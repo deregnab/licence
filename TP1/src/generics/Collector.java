@@ -84,7 +84,7 @@ public class Collector<T>{
      * @return 
      * @throws AlreadyCarryingException 
      */
-    public T giveTo(Collector<T> c) {
+    public void giveTo (Collector<? super T> c) {
     	try{
     	if (c.getCarriedObject()==null){
     		T tmp;
@@ -101,7 +101,7 @@ public class Collector<T>{
 	
     	
     	}
-    	return c.carriedObject;
+
     }
 	
     public static void main(String[] args) {
