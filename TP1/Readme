@@ -1,0 +1,15 @@
+Auteur : Benjamin Deregnaucourt
+		 Samuel Moulard
+
+Commande :
+Dans src :
+	Pour la compilation :
+	 $javac scanner/ScannerInt.java
+	 $javac generics/*.java
+	
+	Pour le lancement : 
+	 - ScannerInt.java : $java scanner.ScannerInt
+	 - ListChoser.java : $java generics.ListChoser
+	 - VegetableListChoser.java : $java generics.VegetableListChoser
+	 - ClonableVegetableListChoser.java : $java generics.ClonableVegetableListChoser
+	 - Collector.java : $java generics.Collector
