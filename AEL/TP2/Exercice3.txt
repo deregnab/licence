@@ -1,0 +1,5 @@
+#Exercice 3
+
+Q1 : egrep '(.*,){1}.*BIS|TER' bano-59009.csv 
+
+Q2 : egrep '(.*,){2}Ruelle' bano-59009.csv
