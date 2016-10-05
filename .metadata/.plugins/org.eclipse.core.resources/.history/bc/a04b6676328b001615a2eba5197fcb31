@@ -23,7 +23,7 @@ public class Mot {
   public Mot(String m) {
     this.m = m;
   }
- 
+  
   /**
    *  Renvoie une representation du Mot sous forme d'une chaine
    *  
@@ -140,10 +140,10 @@ public class Mot {
 		  int[] pref = this.calculerFonctionPrefixe(motif);
 		  int q=0;
 		  for(int i=0;i<this.length()-1;i++){
-			  while(q>0 && this.m.charAt(i)!=motif.m.charAt(q)){
+			  while(q>0 && this.estFacteurDe(motif, i)!=motif.estFacteurDe(motif, q)){
 				 q=pref[q];
 			  }
-			  if (motif.m.charAt(q)==this.m.charAt(i)){
+			  if (motif.estFacteurDe(motif, q)==this.estFacteurDe(motif, i)){
 				  q++;
 			  }
 			  if(q==motif.length()){
@@ -160,15 +160,15 @@ public class Mot {
     pref[1]=0;
     int k=0;
     for(int q=2;q<=motif.length();q++){
-    	while(k>0 && motif.m.charAt(k) != motif.m.charAt(q-1)){
+    	while(k>0 && this.estFacteurDe(this, k) != this.estFacteurDe(this, q-1)){
     		k =pref[k];
     		
     	}
-    	if (motif.m.charAt(k)==motif.m.charAt(q-1)){
+    	if (motif.estFacteurDe(this, k)==motif.estFacteurDe(this, q-1)){
     		k++;
     		
     	}
-    	pref[q-1]=k;
+    	pref[q]=k;
     }
     return pref;
   } 
