@@ -17,8 +17,8 @@ public class StrengthPotionTest extends ItemTest {
 
     @Before
     public void setUp() {
-        p = new Player("Bob", 0, 100, 100, null);
-        sp = new StrengthPotion(100);
+        this.p = new Player("Bob", 0, 100, 100, null);
+        this.sp = new StrengthPotion(100);
     }
 
     /**
@@ -28,9 +28,9 @@ public class StrengthPotionTest extends ItemTest {
     @Override
     public void testIsUsedBy() {
         System.out.println("isUsedBy");
-        sp.isUsedBy(p);
+        this.sp.isUsedBy(this.p);
         int except = 100;
-        int result = p.getStrength();
+        int result = this.p.getStrength();
         assertEquals(except, result);
     }
 
@@ -42,8 +42,7 @@ public class StrengthPotionTest extends ItemTest {
     public void testToString() {
         System.out.println("toString");
         String except = "Strength Potion : 100 strength.";
-        String result = sp.toString();
+        String result = this.sp.toString();
         assertEquals(except, result);
     }
-
 }

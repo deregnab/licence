@@ -17,11 +17,15 @@ public class MenuAction {
 
         Scanner sc = new Scanner(System.in);
 
-        int choice;
+        int choice = -1;
         do {
             System.out.print("Your choice: ");
-            // TODO : Handle NumberFormatException
-            choice = Integer.parseInt(sc.next());
+
+            try {
+                choice = Integer.parseInt(sc.next());
+            } catch (NumberFormatException e) {
+                System.err.println("Number out of range");
+            }
         } while (!isValidChoice(choice, actions.size()));
 
         return actions.get(choice - 1);

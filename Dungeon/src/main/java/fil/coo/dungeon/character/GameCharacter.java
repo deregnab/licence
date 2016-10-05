@@ -6,7 +6,7 @@ import fil.coo.dungeon.rooms.Room;
 /**
  * This class describe character
  *
- * @author boin
+ * @author boinc
  */
 public abstract class GameCharacter {
 
@@ -31,7 +31,7 @@ public abstract class GameCharacter {
      * @return The game adventure reference
      */
     public AdventureGame getGame() {
-        return ag;
+        return this.ag;
     }
 
     /**
@@ -40,7 +40,7 @@ public abstract class GameCharacter {
      * @return The name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -49,7 +49,7 @@ public abstract class GameCharacter {
      * @return The strength
      */
     public int getStrength() {
-        return strength;
+        return this.strength;
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class GameCharacter {
      * @return The amount of life
      */
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class GameCharacter {
      * @return The amount of gold
      */
     public int getGold() {
-        return gold;
+        return this.gold;
     }
 
     /**
@@ -136,9 +136,7 @@ public abstract class GameCharacter {
     /**
      * Kill the character
      */
-    public void die() {
-
-    }
+    public abstract void die();
 
     /**
      * Attack another game character

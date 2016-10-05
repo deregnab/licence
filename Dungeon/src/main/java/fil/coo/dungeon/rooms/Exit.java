@@ -2,7 +2,8 @@ package fil.coo.dungeon.rooms;
 
 /**
  * This class describe an exist room.
- * @author boin
+ * 
+ * @author boinc
  */
 public class Exit extends Room {
 

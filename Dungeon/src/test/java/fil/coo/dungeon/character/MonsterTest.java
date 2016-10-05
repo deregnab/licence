@@ -1,5 +1,6 @@
 package fil.coo.dungeon.character;
 
+import fil.coo.dungeon.rooms.Room;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -9,11 +10,14 @@ import static org.junit.Assert.*;
  * @author boinc
  */
 public class MonsterTest extends GameCharacterTest {
+    
+    private Room r;
 
     @Before
     @Override
     public void setUp() {
-        super.gc = new Monster("Jean", 100, 100, 100, null);
+        this.r = new Room("Room");
+        super.gc = new Monster("Jean", 100, 100, 100, r);
     }
 
     /**
@@ -22,6 +26,8 @@ public class MonsterTest extends GameCharacterTest {
     @Test
     @Override
     public void testDie() {
+        super.gc.die();
+        assertFalse(this.r.getItems().isEmpty());
     }
 
     /**
@@ -32,7 +38,7 @@ public class MonsterTest extends GameCharacterTest {
     public void testToString() {
         System.out.println("toString");
         String except = "Monster Jean hp: 100, strength: 100, gold: 100";
-        String result = gc.toString();
+        String result = super.gc.toString();
         assertEquals(except, result);
     }
 
@@ -40,7 +46,7 @@ public class MonsterTest extends GameCharacterTest {
     public void testGetName() {
         System.out.println("getName");
         String except = "Jean";
-        String result = gc.getName();
+        String result = super.gc.getName();
         assertEquals(except, result);
     }
 

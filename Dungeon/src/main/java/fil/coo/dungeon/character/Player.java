@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author boin
+ * Player is gamecharacter used by user.
+ * 
+ * @author boinc
  */
-public class Player extends GameCharacter {
+public final class Player extends GameCharacter {
 
-    private Map<String, Action> actions;
+    private final Map<String, Action> actions;
 
     public Player(String name, int strength, int health, int gold, Room currentRoom) {
         super(name, strength, health, gold, currentRoom);
@@ -70,5 +71,10 @@ public class Player extends GameCharacter {
     @Override
     public String toString() {
         return "Player " + super.toString();
+    }
+
+    @Override
+    public void die() {
+        /* Here die cause game over. */
     }
 }

@@ -17,7 +17,7 @@ public abstract class GameCharacterTest {
 
     @Before
     public void setUp() {
-        ag = new AdventureGame();
+        this.ag = new AdventureGame();
     }
 
     /**
@@ -26,8 +26,8 @@ public abstract class GameCharacterTest {
     @Test
     public void testGetGame() {
         System.out.println("getGame");
-        gc.setGame(ag);
-        assertEquals(gc.getGame(), ag);
+        this.gc.setGame(this.ag);
+        assertEquals(this.gc.getGame(), this.ag);
     }
 
     /**
@@ -42,8 +42,8 @@ public abstract class GameCharacterTest {
     @Test
     public void testGetStrength() {
         System.out.println("getStrength");
-        gc.setStrength(100);
-        assertEquals(100, gc.getStrength());
+        this.gc.setStrength(100);
+        assertEquals(100, this.gc.getStrength());
     }
 
     /**
@@ -53,8 +53,8 @@ public abstract class GameCharacterTest {
     public void testGetCurrentRoom() {
         System.out.println("getCurrentRoom");
         Room r = new Room("Room");
-        gc.changeCurrentRoom(r);
-        assertEquals(r, gc.getCurrentRoom());
+        this.gc.changeCurrentRoom(r);
+        assertEquals(r, this.gc.getCurrentRoom());
     }
 
     /**
@@ -64,8 +64,8 @@ public abstract class GameCharacterTest {
     public void testChangeCurrentRoom() {
         System.out.println("changeCurrentRoom");
         Room r = new Room("Change");
-        gc.changeCurrentRoom(r);
-        assertEquals(r, gc.getCurrentRoom());
+        this.gc.changeCurrentRoom(r);
+        assertEquals(r, this.gc.getCurrentRoom());
     }
 
     /**
@@ -74,9 +74,9 @@ public abstract class GameCharacterTest {
     @Test
     public void testGetHealth() {
         System.out.println("getHealth");
-        gc.setHealth(10);
+        this.gc.setHealth(10);
         int expResult = 10;
-        int result = gc.getHealth();
+        int result = this.gc.getHealth();
         assertEquals(expResult, result);
     }
 
@@ -86,9 +86,9 @@ public abstract class GameCharacterTest {
     @Test
     public void testGetGold() {
         System.out.println("getGold");
-        gc.setGold(10);
+        this.gc.setGold(10);
         int expResult = 10;
-        int result = gc.getGold();
+        int result = this.gc.getGold();
         assertEquals(expResult, result);
     }
 
@@ -99,8 +99,8 @@ public abstract class GameCharacterTest {
     public void testSetStrength() {
         System.out.println("setStrength");
         int strength = 0;
-        gc.setStrength(strength);
-        assertEquals(strength, gc.getStrength());
+        this.gc.setStrength(strength);
+        assertEquals(strength, this.gc.getStrength());
     }
 
     /**
@@ -109,10 +109,10 @@ public abstract class GameCharacterTest {
     @Test
     public void testIsDead() {
         System.out.println("isDead");
-        gc.setHealth(0);
-        assertTrue(gc.isDead());
-        gc.setHealth(100);
-        assertFalse(gc.isDead());
+        this.gc.setHealth(0);
+        assertTrue(this.gc.isDead());
+        this.gc.setHealth(100);
+        assertFalse(this.gc.isDead());
     }
 
     /**
@@ -120,6 +120,7 @@ public abstract class GameCharacterTest {
      */
     @Test
     public void testDie() {
+        /* Not implemened. */
     }
 
     /**
@@ -128,8 +129,8 @@ public abstract class GameCharacterTest {
     @Test
     public void testAttack() {
         GameCharacter enemy = generateEnemy();
-        int except = (enemy.getHealth() - gc.getStrength());
-        gc.attack(enemy);
+        int except = (enemy.getHealth() - this.gc.getStrength());
+        this.gc.attack(enemy);
         int result = enemy.getHealth();
         assertEquals(except, result);
     }

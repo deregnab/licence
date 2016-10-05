@@ -12,13 +12,15 @@ import fil.coo.dungeon.rooms.Exit;
 import fil.coo.dungeon.rooms.Room;
 
 /**
- *
+ * Describe game mechanic.
+ * 
+ * @author boinc
  * @author seysn
  */
 public class AdventureGame {
 
     public static void main(String[] args) {
-        /* Show menu */
+        /* Show menu. */
         Menu menu = new Menu();
 
         do {
@@ -30,18 +32,18 @@ public class AdventureGame {
 
         } while (menu.getChoice() == 2);
 
-        /* Create rooms */
+        /* Create rooms. */
         Room r1 = new Room("Room 1");
         Room r2 = new Room("Room 2");
         Room r3 = new Room("Room 3");
         Exit r4 = new Exit("Room 4");
 
-        /* Add neighboors */
+        /* Add neighboors. */
         r1.addNeighbors(Direction.EAST, r2);
         r2.addNeighbors(Direction.SOUTH, r3);
         r3.addNeighbors(Direction.EAST, r4);
 
-        /* Initializing Rooms contents */
+        /* Initializing Rooms contents. */
         Player p = new Player("Joe", 10, 100, 0, r1);
 
         r2.addItems(new HealthPotion(25));
@@ -51,13 +53,14 @@ public class AdventureGame {
         r3.addMonsters(new Monster("Jack", 30, 20, 12, r3));
         r3.addMonsters(new Monster("Pierre", 25, 35, 192, r3));
 
-        /* Start game */
+        /* Start game. */
         System.out.println("\nStarting Dungeon Game");
         while (!p.isDead() && !p.getCurrentRoom().isExit()) {
             System.out.println("\n" + p);
             p.act();
         }
 
+        /* End of game. */
         if (p.isDead()) {
             System.out.println("Game Over");
         } else {

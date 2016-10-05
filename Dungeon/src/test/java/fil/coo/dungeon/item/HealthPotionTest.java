@@ -1,6 +1,5 @@
 package fil.coo.dungeon.item;
 
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 import fil.coo.dungeon.character.Player;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -18,8 +17,8 @@ public class HealthPotionTest extends ItemTest {
 
     @Before
     public void setUp() {
-        p = new Player("Rick", 100, 0, 100, null);
-        hp = new HealthPotion(100);
+        this.p = new Player("Rick", 100, 0, 100, null);
+        this.hp = new HealthPotion(100);
     }
 
     /**
@@ -29,9 +28,9 @@ public class HealthPotionTest extends ItemTest {
     @Override
     public void testIsUsedBy() {
         System.out.println("isUsedBy");
-        hp.isUsedBy(p);
+        this.hp.isUsedBy(this.p);
         int except = 100;
-        int result = p.getHealth();
+        int result = this.p.getHealth();
         assertEquals(except, result);
     }
 
@@ -43,7 +42,7 @@ public class HealthPotionTest extends ItemTest {
     public void testToString() {
         System.out.println("toString");
         String except = "Health Potion : 100 health.";
-        String result = hp.toString();
+        String result = this.hp.toString();
         assertEquals(except, result);
     }
 

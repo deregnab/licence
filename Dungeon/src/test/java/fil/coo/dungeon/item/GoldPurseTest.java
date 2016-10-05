@@ -17,8 +17,8 @@ public class GoldPurseTest extends ItemTest {
 
     @Before
     public void setUp() {
-        p = new Player("Rick", 100, 100, 0, null);
-        gp = new GoldPurse(1000);
+        this.p = new Player("Rick", 100, 100, 0, null);
+        this.gp = new GoldPurse(1000);
     }
 
     /**
@@ -28,9 +28,9 @@ public class GoldPurseTest extends ItemTest {
     @Override
     public void testIsUsedBy() {
         System.out.println("isUsedBy");
-        gp.isUsedBy(p);
+        this.gp.isUsedBy(this.p);
         int except = 1000;
-        int result = p.getGold();
+        int result = this.p.getGold();
         assertEquals(result, except);
     }
 
@@ -42,7 +42,7 @@ public class GoldPurseTest extends ItemTest {
     public void testToString() {
         System.out.println("toString");
         String except = "Gold Purse : 1000 gold.";
-        String result = gp.toString();
+        String result = this.gp.toString();
         assertEquals(except, result);
     }
 

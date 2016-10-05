@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class describe a room
- * @author boin
+ * This class describe a room.
+ * 
+ * @author boinc
  */
 public class Room {
     private List<Monster> monsters;
@@ -93,7 +94,6 @@ public class Room {
     public void addItems(Item item) {
         this.items.add(item);
     }
-
     
     /**
      * Add given room in current neighbors list.
@@ -125,6 +125,4 @@ public class Room {
     public String toString() {
         return this.name;
     }
-    
-    
 }

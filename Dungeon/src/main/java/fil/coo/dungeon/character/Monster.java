@@ -4,8 +4,9 @@ import fil.coo.dungeon.item.GoldPurse;
 import fil.coo.dungeon.rooms.Room;
 
 /**
- *
- * @author boin
+ * Monster is an PNJ used to fight player.
+ * 
+ * @author boinc
  */
 public class Monster extends GameCharacter {
 
@@ -18,7 +19,6 @@ public class Monster extends GameCharacter {
      */
     @Override
     public void die() {
-        super.die();
         this.getCurrentRoom().addItems(new GoldPurse(this.getGold()));
         this.getCurrentRoom().removeMonster(this);
     }
