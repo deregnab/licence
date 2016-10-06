@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <getopt.h>
+
+int main(int argc, char const *argv[])
+{
+int o;
+
+  while((o = getopt(argc, argv, "n:")) != -1)
+  {
+		switch ((char) o)
+    {
+			case 'n':
+				nb_line = atoi(optarg);
+				break;
+		}
+	}/*TODO finir lol; arthur help me*/
+
+  if((fd_filename = open(argv[optind], O_RDONLY)) == -1)
+  {
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+
+  close(fd_filename);
+  return EXIT_SUCCESS;
+}
