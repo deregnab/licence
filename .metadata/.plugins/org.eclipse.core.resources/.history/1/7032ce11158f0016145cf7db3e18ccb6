@@ -1,0 +1,12 @@
+package main.room;
+public enum Direction {
+    EAST, NORTH, NORTHEAST, NORTHWEST, SOUTH, SOUTHEAST, SOUTHWEST, WEST;
+    
+    /**
+     * Which direction {NSEW} is left of this direction? 
+     * This direction must be one of {NSEW}. 
+     * @return Direction on left;
+     */
+	public enum Direction {
+	    EAST, NORTH, SOUTH, WEST;
+	}

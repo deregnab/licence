@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;MenuAbout.java&apos; to &apos;Donjon/src/main.menu&apos;&#x0D;&#x0A;- Original project: &apos;Dungeon&apos;&#x0D;&#x0A;- Destination element: &apos;Donjon/src/main.menu&apos;&#x0D;&#x0A;- Original element: &apos;fil.coo.dungeon.menu.MenuAbout.java&apos;" description="Copy compilation unit" destination="=Donjon/src&lt;main.menu" element1="/src\/main\/java&lt;fil.coo.dungeon.menu{MenuAbout.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1476122481122" units="1" version="1.0"/>
+</session>

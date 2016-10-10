@@ -1,6 +1,9 @@
 package main.room;
 import main.personnage.*;
 import main.item.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
@@ -11,11 +14,15 @@ public class Room {
     private List<Monster> monsters;
     private List<Item> items;
     private Map<Direction, Room> neighbors;
-    private String name;
+    private final String name;
     
     public Room(String name) {
         this.name = name;
+        this.neighbors = new HashMap<>();
+        this.items = new ArrayList<>();
+        this.monsters = new ArrayList<>();
     }
+
     /**
      * Return list of all monsters in the room.
      * @return The list of monsters.
@@ -23,6 +30,7 @@ public class Room {
     public List<Monster> getMonsters() {
         return monsters;
     }
+
     /**
      * Returns the list of items for the room.
      * @return The list of items.
@@ -37,15 +45,22 @@ public class Room {
      * @return Room pointed by specified direction
      */
     public Room getNeighbor(Direction direction) {
-        return null;
+        return this.neighbors.get(direction);
     }
+
     /**
      * Return each directions of neighbors rooms.
      * @return - The neighbors direction list
      */
     public List<Direction> getNeighborDirections() {
-        return null;
+        List<Direction> directions = new ArrayList<>();
+        
+        for (Direction d : this.neighbors.keySet())
+            directions.add(d);
+        
+        return directions;
     }
+
     /**
      * Returns the name of the entity.
      * @return name of the room represented by this object.
@@ -53,6 +68,7 @@ public class Room {
     public String getName() {
         return name;
     }
+
     /**
      * Add the specified monster to the current monsters list.
      * @param monster - monster to be added.
@@ -66,8 +82,9 @@ public class Room {
      * @param monster - monster to be removed
      */
     public void removeMonster(Monster monster) {
-        
+        this.monsters.remove(monster);
     }
+
     /**
      * Add an item in this room.
      * @param item - item to be added to the room.
@@ -99,7 +116,11 @@ public class Room {
      * @param item - item to be removed from this list, if present
      */
     public void removeItem(Item item) {
-        
+        this.items.remove(item);
     }
-    
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

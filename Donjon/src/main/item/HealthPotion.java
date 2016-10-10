@@ -14,12 +14,13 @@ public class HealthPotion extends Item{
 		this.health=health;
 		
 	}
-	
-	public int getHealth(){return health;}
-	@Override
-	void isUsedBy(Player p) {
-		p.setHealth(p.getHealth()+this.getHealth());
-		
-	}
+	 @Override
+	    public void isUsedBy(Player p) {
+	        p.setHealth(p.getHealth() + this.health);
+	    }
 
+	    @Override
+	    public String toString() {
+	        return "Health Potion : " + this.health + " health.";
+	    }
 }

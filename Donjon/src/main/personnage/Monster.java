@@ -1,11 +1,13 @@
 package main.personnage;
+import main.personnage.*;
+import main.room.Room;
 /**
  *
  * @author moulard
  */
 public class Monster extends GameCharacter {
-    public Monster(String name, int strength, int health, int gold) {
-        super(name, strength, health, gold);
+    public Monster(String name, int strength, int health, int gold, Room currentRoom) {
+        super(name, strength, health, gold, currentRoom);
     }
     
     /**

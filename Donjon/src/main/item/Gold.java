@@ -9,12 +9,18 @@ public class Gold extends Item {
 		
 		this.gold=gold;
 	}
-	
-	public int getGold(){return gold;}
-	@Override
-	void isUsedBy(Player p) {
-		// TODO Auto-generated method stub
-		p.setGold(p.getGold()+this.getGold());
-	}
+	  /**
+     * Add gold to the Player
+     *
+     * @param p Player
+     */
+    @Override
+    public void isUsedBy(Player p) {
+        p.setGold(p.getGold() + this.gold);
+    }
 
+    @Override
+    public String toString() {
+        return "Gold Purse : " + this.gold + " gold.";
+    }
 }

@@ -3,7 +3,7 @@ import main.personnage.*;
 /**
  * Abstract class for all Items in the Game
  *
- * @author seysn
+ * @author deregnaucourt
  */
 public abstract class Item {
     public Item() {
@@ -13,7 +13,7 @@ public abstract class Item {
      *
      * @param p Player
      */
-    abstract void isUsedBy(Player p);
+    public abstract void isUsedBy(Player p);
     @Override
     public String toString() {
         return super.toString();

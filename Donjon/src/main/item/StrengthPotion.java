@@ -14,10 +14,18 @@ public class StrengthPotion extends Item{
 		return strength;
 		
 	}
-	@Override
-	void isUsedBy(Player p) {
-		p.setStrength(p.getStrength()+this.getStrength());
-		
-	}
+    /**
+     * Add strength to the Player
+     *
+     * @param p Player
+     */
+    @Override
+    public void isUsedBy(Player p) {
+        p.setStrength(p.getStrength() + this.strength);
+    }
 
+    @Override
+    public String toString() {
+        return "Strength Potion : " + this.strength + " strength.";
+    }
 }
