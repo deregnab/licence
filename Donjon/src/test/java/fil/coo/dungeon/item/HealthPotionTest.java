@@ -8,7 +8,7 @@ import org.junit.Before;
 /**
  * Test each method provide by HealPotion.
  *
- * @author boinc
+ * @author moulard
  */
 public class HealthPotionTest extends ItemTest {
 
@@ -17,8 +17,8 @@ public class HealthPotionTest extends ItemTest {
 
     @Before
     public void setUp() {
-        this.p = new Player("Rick", 100, 0, 100, null);
-        this.hp = new HealthPotion(100);
+        this.p = new Player("Test", 100, 0, 100, null);
+        this.hp = new HealthPotion(200);
     }
 
     /**
@@ -29,7 +29,7 @@ public class HealthPotionTest extends ItemTest {
     public void testIsUsedBy() {
         System.out.println("isUsedBy");
         this.hp.isUsedBy(this.p);
-        int except = 100;
+        int except = 200;
         int result = this.p.getHealth();
         assertEquals(except, result);
     }
@@ -41,7 +41,7 @@ public class HealthPotionTest extends ItemTest {
     @Override
     public void testToString() {
         System.out.println("toString");
-        String except = "Health Potion : 100 health.";
+        String except = "Health Potion : 200 health.";
         String result = this.hp.toString();
         assertEquals(except, result);
     }

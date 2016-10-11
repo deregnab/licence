@@ -5,7 +5,7 @@ import main.room.Room;
 
 /**
  * This class describe character
- * @author moulard
+ * @author deregnaucourt
  */
 public abstract class GameCharacter {
 

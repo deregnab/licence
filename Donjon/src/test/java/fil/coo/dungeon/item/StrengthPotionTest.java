@@ -8,7 +8,7 @@ import org.junit.Before;
 /**
  * Test each method provide by StrengthPotion.
  *
- * @author boinc
+ * @author moulard
  */
 public class StrengthPotionTest extends ItemTest {
 
@@ -17,8 +17,8 @@ public class StrengthPotionTest extends ItemTest {
 
     @Before
     public void setUp() {
-        this.p = new Player("Bob", 0, 100, 100, null);
-        this.sp = new StrengthPotion(100);
+        this.p = new Player("Test", 0, 100, 100, null);
+        this.sp = new StrengthPotion(200);
     }
 
     /**
@@ -29,7 +29,7 @@ public class StrengthPotionTest extends ItemTest {
     public void testIsUsedBy() {
         System.out.println("isUsedBy");
         this.sp.isUsedBy(this.p);
-        int except = 100;
+        int except = 200;
         int result = this.p.getStrength();
         assertEquals(except, result);
     }
@@ -41,7 +41,7 @@ public class StrengthPotionTest extends ItemTest {
     @Override
     public void testToString() {
         System.out.println("toString");
-        String except = "Strength Potion : 100 strength.";
+        String except = "Strength Potion : 200 strength.";
         String result = this.sp.toString();
         assertEquals(except, result);
     }

@@ -3,7 +3,7 @@ import main.personnage.*;
 import main.room.Room;
 /**
  *
- * @author moulard
+ * @author deregnaucourt
  */
 public class Monster extends GameCharacter {
     public Monster(String name, int strength, int health, int gold, Room currentRoom) {

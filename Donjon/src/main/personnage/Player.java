@@ -15,7 +15,7 @@ import main.menu.ActionMenu;
 import main.room.Room;
 /**
  *
- * @author moulard
+ * @author deregnaucourt
  */
 public class Player extends GameCharacter {
     

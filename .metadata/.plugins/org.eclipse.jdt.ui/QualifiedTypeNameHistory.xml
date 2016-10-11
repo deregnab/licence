@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="fil.coo.dungeon.action.AttackAction"/>
-<fullyQualifiedTypeName name="main.action.Attack"/>
-<fullyQualifiedTypeName name="main.action.Move"/>
-<fullyQualifiedTypeName name="main.action.Use"/>
 <fullyQualifiedTypeName name="main.action.Look"/>
 <fullyQualifiedTypeName name="main.item.Item"/>
 <fullyQualifiedTypeName name="main.AdventureGame"/>
 <fullyQualifiedTypeName name="main.menu.ActionMenu"/>
 <fullyQualifiedTypeName name="main.menu.Menu"/>
 <fullyQualifiedTypeName name="main.room.Room"/>
-<fullyQualifiedTypeName name="main.personnage.Player"/>
 <fullyQualifiedTypeName name="main.room.Direction"/>
 <fullyQualifiedTypeName name="main.item.HealthPotion"/>
 <fullyQualifiedTypeName name="main.item.StrengthPotion"/>
 <fullyQualifiedTypeName name="main.item.Gold"/>
-<fullyQualifiedTypeName name="main.personnage.Monster"/>
 <fullyQualifiedTypeName name="main.menu.MenuAbout"/>
 <fullyQualifiedTypeName name="main.room.Exit"/>
+<fullyQualifiedTypeName name="main.personnage.Player"/>
+<fullyQualifiedTypeName name="main.personnage.Monster"/>
+<fullyQualifiedTypeName name="main.action.Attack"/>
+<fullyQualifiedTypeName name="main.action.Move"/>
+<fullyQualifiedTypeName name="main.action.Use"/>
 </qualifiedTypeNameHistroy>

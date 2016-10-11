@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author boinc
+ * @author moulard
  */
 public abstract class GameCharacterTest {
 

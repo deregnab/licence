@@ -32,7 +32,7 @@ public abstract class ActionTest {
         this.p = new Player("Andrew", 40, 100, 500, this.r);
 
         /* Add items */
-        this.r.addItems(new GoldPurse(400));
+        this.r.addItems(new Gold(400));
         this.r.addItems(new HealthPotion(50));
         this.r.addItems(new StrengthPotion(20));
 

@@ -7,7 +7,11 @@ import main.personnage.Monster;
 import main.personnage.Player;
 import main.room.Direction;
 
-
+/**
+ * This class allows the player to check for information concerning the dungeon
+ * @author deregnaucourt
+ *
+ */
 public class Look extends Action {
 
     public Look() {

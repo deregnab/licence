@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author boinc
+ * @author moulard
  */
 public class MonsterTest extends GameCharacterTest {
     
@@ -17,7 +17,7 @@ public class MonsterTest extends GameCharacterTest {
     @Override
     public void setUp() {
         this.r = new Room("Room");
-        super.gc = new Monster("Jean", 100, 100, 100, r);
+        super.gc = new Monster("Test", 100, 100, 100, r);
     }
 
     /**
@@ -37,7 +37,7 @@ public class MonsterTest extends GameCharacterTest {
     @Override
     public void testToString() {
         System.out.println("toString");
-        String except = "Monster Jean hp: 100, strength: 100, gold: 100";
+        String except = "Monster Test hp: 100, strength: 100, gold: 100";
         String result = super.gc.toString();
         assertEquals(except, result);
     }
@@ -45,14 +45,14 @@ public class MonsterTest extends GameCharacterTest {
     @Override
     public void testGetName() {
         System.out.println("getName");
-        String except = "Jean";
+        String except = "Test";
         String result = super.gc.getName();
         assertEquals(except, result);
     }
 
     @Override
     protected GameCharacter generateEnemy() {
-        return new Player("Rick", 10, 100, 50, null);
+        return new Player("TestM", 10, 100, 50, null);
     }
 
 }

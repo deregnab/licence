@@ -5,6 +5,12 @@ import main.personnage.Player;
 import main.room.Direction;
 import main.menu.*;
 
+/**
+ * Extends Action, this class allows the player to change his current Room
+ * @author deregnaucourt
+ *
+ */
+
 public class Move extends Action {
 
 

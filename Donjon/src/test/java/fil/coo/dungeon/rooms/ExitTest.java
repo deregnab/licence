@@ -10,7 +10,7 @@ import org.junit.Before;
 
 /**
  *
- * @author boinc
+ * @author moulard
  */
 public class ExitTest extends RoomTest {
 
@@ -18,11 +18,11 @@ public class ExitTest extends RoomTest {
     @Override
     public void setUp() {
         super.r = new Exit("Exit");
-        super.m1 = new Monster("foo", 42, 42, 42, r);
-        super.m2 = new Monster("bar", 42, 42, 42, r);
+        super.m1 = new Monster("Test1", 42, 42, 42, r);
+        super.m2 = new Monster("Test2", 42, 42, 42, r);
         super.items = new ArrayList<>();
-        super.items.add(new GoldPurse(100));
-        super.items.add(new HealthPotion(55));
+        super.items.add(new Gold(200));
+        super.items.add(new HealthPotion(150));
     }
 
     /**
@@ -42,7 +42,7 @@ public class ExitTest extends RoomTest {
     @Override
     public void testToString() {
         System.out.println("toString");
-        super.r.addItems(new GoldPurse(100));
+        super.r.addItems(new Gold(200));
         String expected = "Exit";
         assertEquals(expected, super.r.toString());
 

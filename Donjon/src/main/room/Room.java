@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
- * This class describe a room
+ * This class creates a room
  * @author deregnaucourt
  */
 public class Room {
@@ -32,7 +32,7 @@ public class Room {
     }
 
     /**
-     * Returns the list of items for the room.
+     * Returns the list of items inside of the room.
      * @return The list of items.
      */
     public List<Item> getItems() {
@@ -41,7 +41,7 @@ public class Room {
     
     /**
      * Return the the first occurrence of the room by specified direction.
-     * @param direction - Diection of wanted room
+     * @param direction - Direction of wanted room
      * @return Room pointed by specified direction
      */
     public Room getNeighbor(Direction direction) {
@@ -78,8 +78,8 @@ public class Room {
     }
     
     /**
-     * Remove the specified monster from the current monsters list.
-     * @param monster - monster to be removed
+     * Remove the specified monster from the  monsters list.
+     * @param monster - monster to remove
      */
     public void removeMonster(Monster monster) {
         this.monsters.remove(monster);
@@ -87,7 +87,7 @@ public class Room {
 
     /**
      * Add an item in this room.
-     * @param item - item to be added to the room.
+     * @param item - item to add to the room.
      */
     public void addItems(Item item) {
         this.items.add(item);
@@ -96,7 +96,7 @@ public class Room {
     /**
      * Add given room in current neighbors list.
      * @param direction - position of room in space
-     * @param room - room to be added as neighbors
+     * @param room - room to add as neighbors
      */
     public void addNeighbors(Direction direction, Room room) {
         this.neighbors.put(direction, room);
@@ -113,7 +113,7 @@ public class Room {
     /**
      * Removes the first occurrence of the specified item from this list
      * ,if it is present.
-     * @param item - item to be removed from this list, if present
+     * @param item - item to remove from this list, if present
      */
     public void removeItem(Item item) {
         this.items.remove(item);

@@ -1,0 +1,19 @@
+package test.java.fil.coo.dungeon.action;
+
+import fil.coo.dungeon.character.Player;
+import fil.coo.dungeon.item.Item;
+import main.action.Use;
+
+/**
+ *
+ * @author moulard
+ */
+public class UseMock extends Use{
+
+    @Override
+    public void execute(Player p) {
+        Item i = p.getCurrentRoom().getItems().get(1);
+        i.isUsedBy(p);
+        p.getCurrentRoom().removeItem(i);
+    }
+}
