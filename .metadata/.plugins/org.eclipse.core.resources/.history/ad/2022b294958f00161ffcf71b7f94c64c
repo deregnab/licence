@@ -1,0 +1,18 @@
+package fil.coo.dungeon.action;
+
+import fil.coo.dungeon.character.Player;
+import fil.coo.dungeon.rooms.Direction;
+import main.action.Move;
+
+/**
+ *
+ * @author boinc
+ */
+public class MoveMock extends Move {
+
+    @Override
+    public void execute(Player p) {
+        Direction d = p.getCurrentRoom().getNeighborDirections().get(0);
+        p.changeCurrentRoom(p.getCurrentRoom().getNeighbor(d));
+    }
+}
