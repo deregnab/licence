@@ -1,0 +1,85 @@
+Le script a débuté sur lun. 17 oct. 2016 11:25:40 CEST
+########### MULTIF ###########
+Les fonctions retournent une valeur vraie
+f1
+f2
+f3
+ret : 1
+
+Les fonctions retournent une valeur vraie sauf la fonction f4
+f1
+f4
+ret : -1
+######## COURSE ########
+Processus 2 : pid = 30886
+Processus 8 : pid = 30892
+Processus 7 : pid = 30891
+Processus 3 : pid = 30887
+Processus 4 : pid = 30888
+Processus 5 : pid = 30889
+Processus 6 : pid = 30890
+Processus 9 : pid = 30893
+Processus 1 : pid = 30885
+Processus 10 : pid = 30894
+Fin boucle 1 pid = 30886
+Fin boucle 1 pid = 30892
+Fin boucle 1 pid = 30885
+Fin boucle 1 pid = 30887
+Fin boucle 1 pid = 30891
+Fin boucle 1 pid = 30893
+Fin boucle 1 pid = 30889
+Fin boucle 1 pid = 30894
+Fin boucle 1 pid = 30888
+Fin boucle 1 pid = 30890
+
+
+Position 1 : pid = 30886
+
+
+Position 2 : pid = 30892
+
+
+Position 3 : pid = 30885
+
+
+Position 4 : pid = 30893
+
+
+Position 5 : pid = 30889
+
+
+Position 6 : pid = 30891
+
+
+Position 7 : pid = 30887
+
+
+Position 8 : pid = 30894
+
+
+Position 9 : pid = 30888
+
+
+Position 10 : pid = 30890
+######## OBS #######
+
+Pid : 30898
+Pid : 30897
+Pid : 30896
+  PID TTY          TIME CMD
+ 9775 pts/2    00:00:15 emacs
+11711 pts/7    00:00:01 evince
+12374 pts/7    00:00:00 vi
+30875 pts/2    00:00:00 make
+30876 pts/2    00:00:00 script
+30895 pts/19   00:00:00 obs
+30896 pts/19   00:00:00 obs
+30897 pts/19   00:00:00 obs
+30898 pts/19   00:00:00 obs
+30899 pts/19   00:00:00 sh
+30900 pts/19   00:00:00 ps
+Pid : 30898
+Pid : 30897
+Pid : 30896
+^C
+Script terminé sur lun. 17 oct. 2016 11:25:47 CEST
