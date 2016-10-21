@@ -2,6 +2,6 @@
 
 ./multif
 
-./course
+./race
 
-./obs
+./observation
