@@ -232,10 +232,40 @@ SELECT avg(ep.salaire)-avg(e.salaire) FROM employes ep, employes e WHERE ep.eid 
 11 Calculez la diff´erence entre le revenu moyen de pilotes, et le revenu moyen de tous
 les employes 
 
-SELECT v1.h_dep
-FROM vols v1 INNER JOIN vols v2 ON v1.arr = v2.dep
-WHERE v1.dep = 'Madison'
-    AND v2.arr = 'New York'
-    AND v1.h_arr < v2.h_dep
-    AND extract(hour FROM v2.h_dep) < 18;
+SELECT v1.h_dep 
+    FROM vols v1 
+        INNER JOIN vols v2 ON v1.arr = v2.dep 
+        INNER JOIN vols v3 ON v2.arr = v3.dep 
+        INNER JOIN vols v4 ON v3.arr = v4.dep 
+    WHERE v1.dep = 'Madison'
+        AND v4.arr = 'New York'
+        AND EXTRACT(hour FROM v4.h_arr) < 18
+
+UNION    
+
+SELECT v1.h_dep 
+    FROM vols v1 
+        INNER JOIN vols v2 ON v1.arr = v2.dep 
+        INNER JOIN vols v3 ON v2.arr = v3.dep 
+    WHERE v1.dep = 'Madison' 
+        AND v3.arr = 'New York' 
+        AND EXTRACT(hour FROM v3.h_arr) < 18
+
+UNION    
+
+SELECT v1.h_dep 
+    FROM vols v1 
+        INNER JOIN vols v2 ON v1.arr = v2.dep 
+    WHERE v1.dep = 'Madison' 
+        AND v2.arr = 'New York' 
+        AND EXTRACT(hour FROM v2.h_arr) < 18;
+
+# Résultats :
+
+        h_dep        
+---------------------
+ 2016-04-12 22:12:00
+ 2016-04-12 08:32:00
+ 2016-04-12 06:15:00
+ 2016-04-12 08:02:00
 
