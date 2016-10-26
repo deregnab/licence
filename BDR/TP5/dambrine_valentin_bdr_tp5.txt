@@ -1,0 +1,115 @@
+# BDR - TP5
+# Valentin Dambrine
+
+# Question 1 (f) : Pour chaque pilote certifié pour au moins deux avions, donnez l’eid et la portée
+maximale d’avion pour lesquels ce pilote est certifié.
+
+select eid, max(portee) from avions natural join certifications group by eid having count(aid) >= 2;
+
+# Résultats :
+
+    eid    | max  
+-----------+------
+ 552455318 | 3383
+ 274878974 | 6475
+ 556784565 | 7120
+ 242518965 | 4010
+  11564812 | 4010
+ 355548984 | 6900
+ 550156548 | 8430
+ 269734834 | 8430
+ 567354612 | 8430
+ 573284895 | 7120
+ 574489456 | 4103
+ 142519864 | 8430
+ 310454876 | 6900
+ 159542516 | 1530
+ 390487451 | 7120
+ 141582651 | 6475
+
+# Question 2 (f) : Déterminez les noms de pilotes dont le salaire est inférieur au prix du vol le moins
+ cher de l’aéroport Paris-Charles de Gaulle (CDG) vers La Tontouta en Nouvelle Calédonie (NOU).
+
+select enom from employes natural join vols where eid in (select eid from certifications) and dep='CDG' and arr='NOU' group by enom, salaire having salaire < min(prix);
+
+# Résultats :
+
+    enom       
+-----------------
+ Oussama Moulana
+
+# Question 3 (m) : Quelles routes peuvent être volées par tous les pilotes gagnant > 100 000 euros ? 2
+ versions en SQL dont une avec ∃. Puis, en TRC, faites et rendez le 7 novembre sur papier l’exo
+ tel que décrit dans le fichier TRC queries student.txt disponible sur Moodle.
+
+# Version avec exists :
+
+select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance>a.portee and e.salaire<100000);
+
+# Version autre :
+
+select v.dep, v.arr, v.distance from vols v where v.distance <= all (select a.portee from employes e natural join certifications c natural join avions a where e.salaire > 100000);
+
+# Résultats :
+
+    dep     |     arr     | distance 
+------------+-------------+----------
+ Madison    | Chicago     |       84
+ Pittsburgh | New York    |      303
+ Detroit    | New York    |      470
+ Madison    | Minneapolis |      247
+ Madison    | Pittsburgh  |      517
+ Madison    | Detroit     |      319
+
+# Question 4 : Les noms des pilotes uniquement certifiés pour des avions de portée > 1500 km.
+ Faites deux versions en SQL, l’une avec group by et EVERY, l’autre avec ∃. Faites également la
+ version TRC, directement sur le fichier que vous rendrez avec votre TP.
+
+# Version avec group by et EVERY :
+
+select distinct enom from employes natural join certifications natural join avions group by enom having every(portee > 1500);
+
+# Version avec exists :
+
+select enom from employes e where eid in (select eid from certifications) and not exists (select * from avions a natural join certifications c where e.eid = c.eid and portee <= 1500) order by enom;
+
+# Résultats :
+
+    enom        
+-------------------
+ Anael Klein
+ Astelia Massamba
+ Boubacar Diallo
+ Etienne Renard
+ Hakim Taleb
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Linda Mariencourt
+ Nicolas Baudin
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+
+# Question 5 : Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
+
+select enom from employes natural join certifications c natural join avions where eid in (select eid from certifications) and not exists (select * from avions a where c.aid = a.aid and portee < 1500)group by enom having count(aid) >= 2 order by enom;
+    enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Boubacar Diallo
+ Etienne Renard
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
+ Patricia Jones
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+

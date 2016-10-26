@@ -5,7 +5,7 @@ TP5
 
 1 Pour chaque pilote certifié pour au moins deux avions, donnez l’eid et la portée maximale d’avion pour lesquels ce pilote est certifié.
 
-select eid, max(portee) from Employes e natural join  certifications c natural join avions a group by eid having count(eid)>2;
+SELECT eid, max(portee) FROM Employes e NATURAL JOIN  certifications c NATURAL JOIN avions a GROUP BY eid having count(eid)>2;
     eid    | max  
 -----------+------
  552455318 | 3383
@@ -20,7 +20,7 @@ select eid, max(portee) from Employes e natural join  certifications c natural j
 
 2 Déterminez les noms de pilotes dont le salaire est inférieur au prix du vol le moins cher de l’aéroport Paris-Charles de Gaulle (CDG) vers La Tontouta en Nouvelle Calédonie (NOU).
 
- select enom from employes e where salaire < (select min(prix) from vols where dep='CDG' and arr='NOU');
+ SELECT enom FROM employes e WHERE salaire < (SELECT min(prix) FROM vols WHERE dep='CDG' and arr='NOU');
       enom       
 -----------------
  Oussama Moulana
@@ -29,11 +29,11 @@ select eid, max(portee) from Employes e natural join  certifications c natural j
 3 Quelles routes peuvent être volees par tous les pilotes gagnant > 100 000euros ? 2
 versions en SQL dont une avec ∃. 
 
-select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance<a.portee and e.salaire<100000) order by dep;
+SELECT DISTINCT dep, arr, distance FROM vols v WHERE not exists (SELECT * FROM employes e NATURAL JOIN certifications c NATURAL JOIN avions a WHERE v.distance<a.portee and e.salaire<100000) order by dep;
 
-select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance>a.portee and e.salaire<100000);
+SELECT DISTINCT dep, arr, distance FROM vols v WHERE not exists (SELECT * FROM employes e NATURAL JOIN certifications c NATURAL JOIN avions a WHERE v.distance>a.portee and e.salaire<100000);
 
-select dep, arr,distance from vols v  where v.distance <= all(select a.portee from avions a natural join certifications c natural join employes e where e.salaire > 100000);
+SELECT dep, arr,distance FROM vols v  WHERE v.distance <= all(SELECT a.portee FROM avions a NATURAL JOIN certifications c NATURAL JOIN employes e WHERE e.salaire > 100000);
 
 
 
@@ -49,9 +49,9 @@ dep         |arr          | distance
 
 4 Les noms des pilotes uniquement certifiés pour des avions de portée > 1500 km
 
-select enom from employes e natural join certifications c natural join avions a group by enom having every (a.portee >1500);
+SELECT enom FROM employes e NATURAL JOIN certifications c NATURAL JOIN avions a GROUP BY enom having every (a.portee >1500);
 
-select distinct enom from employes e natural join certifications c where not exists (select * from avions a natural join certifications c1 where c1.eid=c.eid and portee <= 1500);
+SELECT DISTINCT enom FROM employes e NATURAL JOIN certifications c WHERE not exists (SELECT * FROM avions a NATURAL JOIN certifications c1 WHERE c1.eid=c.eid and portee <= 1500);
 
 
        enom        
@@ -70,33 +70,172 @@ select distinct enom from employes e natural join certifications c where not exi
  Hugo Ermenidis
  Ivonne Boulala
 
+5 Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
 
-5
-
-pas sur
-select distinct  enom from employes e natural join certifications c where exists (select enom from avions a natural join certifications c1 where a.portee > 1500 group by eid having count(eid)>2)
- 
-;
-       enom        
+SELECT enom FROM employes NATURAL JOIN certifications c NATURAL JOIN avions WHERE eid in (SELECT eid FROM certifications) and not exists (SELECT * FROM avions a WHERE c.aid = a.aid and portee < 1500)GROUP BY enom having count(aid) >= 2 order by enom;
+    enom        
 -------------------
- Astelia Massamba
  Ana Bozianu
- Laura Giacco
- Hakim Taleb
- Ulysses Boulala
- Etienne Renard
- Teresa Klatzer
- Boubacar Diallo
- Nicolas Baudin
  Anael Klein
- Maxence Gens
- Joris Robillard
+ Boubacar Diallo
+ Etienne Renard
  Hugo Ermenidis
- Linda Mariencourt
  Ivonne Boulala
- Tommy Carpentier
- Victor Goron
- Valentin Owczarek
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
  Patricia Jones
- Oussama Moulana
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+5 Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
+
+SELECT enom FROM employes NATURAL JOIN certifications c NATURAL JOIN avions WHERE eid in (SELECT eid FROM certifications) and not exists (SELECT * FROM avions a WHERE c.aid = a.aid and portee < 1500)GROUP BY enom having count(aid) >= 2 order by enom;
+    enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Boubacar Diallo
+ Etienne Renard
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
+ Patricia Jones
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+5 Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
+
+SELECT enom FROM employes NATURAL JOIN certifications c NATURAL JOIN avions WHERE eid in (SELECT eid FROM certifications) and not exists (SELECT * FROM avions a WHERE c.aid = a.aid and portee < 1500)GROUP BY enom having count(aid) >= 2 order by enom;
+    enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Boubacar Diallo
+ Etienne Renard
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
+ Patricia Jones
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+5 Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
+
+SELECT enom FROM employes NATURAL JOIN certifications c NATURAL JOIN avions WHERE eid in (SELECT eid FROM certifications) and not exists (SELECT * FROM avions a WHERE c.aid = a.aid and portee < 1500)GROUP BY enom having count(aid) >= 2 order by enom;
+    enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Boubacar Diallo
+ Etienne Renard
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
+ Patricia Jones
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+5 Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
+ portée supérieure à 1500 km, pour au moins deux tels avions.
+
+SELECT enom FROM employes NATURAL JOIN certifications c NATURAL JOIN avions WHERE eid in (SELECT eid FROM certifications) and not exists (SELECT * FROM avions a WHERE c.aid = a.aid and portee < 1500)GROUP BY enom having count(aid) >= 2 order by enom;
+    enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Boubacar Diallo
+ Etienne Renard
+ Hugo Ermenidis
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Linda Mariencourt
+ Nicolas Baudin
+ Patricia Jones
+ Teresa Klatzer
+ Tommy Carpentier
+ Valentin Owczarek
+ Victor Goron
+
+
+6 Donnez les noms des pilotes qui sont certifies uniquement pour des avions d’une
+portee superieure a 1500 km, et qui sont certifies pour au moins un type de Boeing.
+
+SELECT DISTINCT enom 
+    FROM employes 
+        NATURAL JOIN certifications c 
+    WHERE eid in (SELECT eid 
+                    FROM certifications) 
+        and not exists (SELECT * 
+                            FROM avions a
+                                NATURAL JOIN certifications c2
+                            WHERE c.eid = c2.eid 
+                                and portee < 1500) 
+        and aid = some(SELECT aid 
+                            FROM avions 
+                            WHERE anom like 'Boeing%') 
+    order by enom;
+
+
+       enom        
+-------------------
+ Anael Klein
+ Etienne Renard
+ Ivonne Boulala
+ Joris Robillard
+ Valentin Owczarek
+ Victor Goron
+(6 rows)
+
+
+7 : Trouvez l’identifiant de l’employ´e avec le salaire le deuxi`eme plus haut. N’utiliser ni limit, ni order by
+
+ SELECT eid FROM employes WHERE salaire= (SELECT max(salaire) FROM employes WHERE salaire < (SELECT MAX(salaire) FROM employes));
+    eid    
+-----------
+ 269734834
+
+
+8 Affichez les noms des pilotes qui peuvent piloter des avions d’une port´ee sup´erieure a 2000km, mais qui ne sont certifi´es pour aucun Boeing.
+
+9 Affichez les noms et revenus d’employ´es qui ne sont pas des pilotes, mais qui gagnent plus que le revenu moyen des pilotes.
+
+SELECT enom FROM employes e WHERE eid not in (SELECT eid FROM certifications) and salaire>(SELECT avg(salaire) FROM employes NATURAL JOIN certifications);
+ enom 
+------
+(0 rows)
+
+10 Calculez la diff´erence entre le revenu moyen de pilotes, et le revenu moyen de tous
+les employ´es
+
+SELECT avg(ep.salaire)-avg(e.salaire) FROM employes ep, employes e WHERE ep.eid in (SELECT eid FROM certifications);
+
+11 Calculez la diff´erence entre le revenu moyen de pilotes, et le revenu moyen de tous
+les employes 
+
+SELECT v1.h_dep
+FROM vols v1 INNER JOIN vols v2 ON v1.arr = v2.dep
+WHERE v1.dep = 'Madison'
+    AND v2.arr = 'New York'
+    AND v1.h_arr < v2.h_dep
+    AND extract(hour FROM v2.h_dep) < 18;
 
