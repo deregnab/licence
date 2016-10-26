@@ -1,0 +1,5 @@
+fil/coo/Resource/Resource.class
+fil/coo/App.class
+fil/coo/exception/NoSuchElementException.class
+fil/coo/exception/IllegalArgumentException.class
+fil/coo/Resource/ResourcePool.class
