@@ -1,0 +1,8 @@
+#AEL-TDM2 : Exercice 3
+
+Q1 : egrep '(.*,){1}.*BIS|TER' bano-59009.csv 
+
+Q2 : egrep '(.*,){2}Ruelle' bano-59009.csv
+
+Q3 : egrep --color ',.*,[[:upper:]]{2}+[[:space:][:punct:]][[:upper:]]*' bano-59009.csv
+#Le numero de voie est en majuscule 
