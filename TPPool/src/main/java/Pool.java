@@ -2,7 +2,7 @@ import fil.coo.Resource.BasketPool;
 import fil.coo.Resource.CubiclePool;
 import fil.coo.exception.ActionFinishedException;
 import fil.coo.scheduler.FairScheduler;
-import fil.coo.user.Swimmer;
+import fil.coo.scheduler.Swimmer;
 
 
 

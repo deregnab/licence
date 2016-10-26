@@ -1,29 +1,15 @@
 package fil.coo.action;
 
 import fil.coo.Resource.Resource;
+import fil.coo.exception.ActionFinishedException;
 
-public class ResourceAction<R extends Resource> implements Action{
+public abstract class ResourceAction<R extends Resource> implements Action{
+	public abstract boolean isFinished();
 
-	public boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract void doStep() throws ActionFinishedException;
 
+	public abstract boolean isReady();
 
-	public void doStep() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean isReady() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public boolean isInProgress() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract boolean isInProgress();
 
 }

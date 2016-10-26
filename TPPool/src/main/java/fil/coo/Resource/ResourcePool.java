@@ -42,4 +42,7 @@ public abstract class ResourcePool <R extends Resource> {
 		}
 		return false;
 	}
+
+	
+
 }

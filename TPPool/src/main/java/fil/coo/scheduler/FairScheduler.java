@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 
 import fil.coo.action.Action;
 import fil.coo.exception.ActionFinishedException;
-import fil.coo.user.Swimmer;
 
 public class FairScheduler extends Scheduler {
 
