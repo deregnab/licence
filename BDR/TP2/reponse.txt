@@ -1,0 +1,132 @@
+#Deregnaucourt Benjamin
+#TP2 BDR
+#26 septembre 2016
+
+
+#Exercice 1
+#Q1.1 Quelle observation avez-vous faite lors du remplissage des tables de la
+boutique, comment expliquez-vous le probl`eme, et comment l’avez-vous resolu ?
+
+    Le probleme rencontré est que nous essayons de creer des valeurs dans catalogue alors que la table fournisseurs est encore vide. Or, le fid est une cle secondaire de ce fait nous avons un probleme de contraintes referentielles
+
+    Pour le resoudre il suffit de realiser les inserts de fournisseurs avant ceux de catalogue
+
+#Q1.2 Expliquez le rapport entre le resultat de la requete suivante, et votre script
+de creation
+    La requete affiche les contraintes des tables qui ont été créées precedemment
+
+#Q1.3
+
+
+
+#Q1.4 Proposez et testez une insertion dans la table Article, violant une contrainte
+de cle primaire.
+
+    insert into articles values (NULL,'saucisson','rouge'); 
+
+#Q1.5 ajoutez a votre script de creation une contrainte CHECK qui empeche l’insertion de prix negatifs. Prouvez son efficacite avec une commande d’insertion.
+
+    alter table catalogue add constraint cs_prix check (prix >0);
+
+    insert into catalogue values (5,3,-69);
+
+#Q1.6
+    delete from articles where aid=1;
+
+    La requete ne fonctionne pas à cause des contraintes liées aux clés secondaires de la table catalogue
+    
+
+#Exercice 2
+
+#Q2.1 
+
+     select fid as fournisseur , fad as adresse from fournisseurs
+
+
+#Q2.2 
+    select distinct fid from catalogue where prix>10 and prix <20;
+
+#Q2.3
+    select distinct anom from articles, catalogue where prix<20 and (acoul='vert' or acoul='rouge')
+
+
+
+#Q2.4
+    select Max(prix),min(prix) from catalogue
+
+#2.5
+        select distinct fid from catalogue c,articles a1 where a1.acoul='vert' and c.fid in (Select distinct fid from catalogue, articles a2 where a2.acoul='rouge')
+
+#2.6
+        select * from articles a1, articles a2 where a1.coul='vert' and a2.coul='rouge'
+
+#2.7 : Trouver les noms des fournisseurs qui n’offrent ni des articles noirs, ni des articles argentés.
+        SELECT fnom, fid
+        FROM fournisseurs
+        WHERE fid NOT IN (SELECT fid
+           FROM catalogue c INNER JOIN articles a ON c.aid = a.aid
+           WHERE a.acoul IN ('argente', 'noir'));
+
+#2.8
+    select fnom,fad from fournisseurs where fid not in (select fid from catalogue where prix<=1000)
+
+#2.9
+    select distinct aid from catalogue
+
+#2.10
+    select count(*) from articles
+
+#2.11
+    select count(*) from catalogue
+#2.12
+    select count(*) from articles where aid in (select aid from catalogue)
+
+#2.13
+    le nombre d'articles fournissables sont identiques au nombre de lignes du catalogues si chaque article est fournissable par un unique fournisseur 
+
+#2.14
+    select count(distinct acoul) from articles
+
+
+
+#Exercice 3 
+
+#3.1
+    select distinct fid from articles a inner join catalogue c on c.aid=a.aid where acoul='rouge'
+
+#3.2
+    select avg(round(prix)) from catalogue c inner join articles a on a.aid=c.aid where acoul='rouge'
+
+    select  distinct avg(round(prix)) from catalogue c, articles a where c.aid = a.aid and a.acoul='rouge'
+
+
+#3.3
+    select f.fid,fnom from catalogue c right join fournisseurs f on c.fid=f.fid 
+where aid is null
+
+#3.4
+    select a.aid, a.anom from catalogue c right join articles a on c.aid=a.aid 
+where fid is null
+
+#3.5
+    select a.aid, a.anom from catalogue c right join articles a on c.aid=a.aid 
+where a.aid not in (select aid from catalogue)
+
+
+#Exercice 4
+
+#4.1
+    select upper(fnom) from fournisseurs
+
+#4.2
+    select fid, aid, round(prix+0.5) PRIX_ROND from catalogue
+
+#4.3
+    select * from fournisseurs where fad like '%Paris'    
+
+#4.4
+    select * from fournisseurs where fnom like '%i%' and fnom like'%e%"
+
+#4.5
+      select * from fournisseurs where fnom like '%a%' or fnom like'%A%"
+

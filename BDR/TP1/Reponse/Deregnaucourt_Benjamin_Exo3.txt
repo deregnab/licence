@@ -1,0 +1,57 @@
+Nom:Deregnaucourt
+Prenom:Benjamin
+Date:19/09/2016
+
+#Exercice 3
+
+#1  Enumerer les noms des articles fournissables, a l’aide d’une jointure naturelle
+et d’une projection.
+ project[anom](catalogue join  articles);
+
+#2 Donner la liste des articles fournissables, avec les prix auxquels ils sont offerts
+et le nom du fournisseur correspondant.
+ project[anom,prix,fnom](catalogue join articles join fournisseurs);
+
+#3 Quels fournisseurs offrent des articles rouges ? Donnez leurs identifiants.
+ project[fid](select[acoul='rouge'](articles join catalogue));
+
+#4 Quels fournisseurs proposent des articles `a moins de 20 euros ?
+ project[fnom](select[prix<20](fournisseurs join catalogue));
+
+
+#5 Quels fournisseurs offrent uniquement des articles `a plus de 10000 euros ?
+Donnez leurs identifiants.
+ project[fid](catalogue) minus project[fid](select[prix<=10000](fournisseurs join catalogue));
+
+#6 Maintenant, donnez les noms et adresses des fournisseurs proposant uniquement
+des articles `a plus de 1000 euros.
+ project[fnom,fad](fournisseurs) minus project[fnom,fad](select[prix<=10000](fournisseurs join catalogue));
+
+#7 Lister toutes les combinaisons possibles d’un article vert avec un article
+rouge. Pour chaque combinaison, donnez les deux indentifiants d’articles. 
+ project[aid](select[acoul='vert'](articles)) times project[aid](select[acoul='rouge'](articles));
+
+#8 Quels articles ne peuvent ˆetre command´es chez aucun fournisseur ? Donnez
+leurs identifiants.
+ project[aid](articles) minus project[aid](catalogue);
+
+#9 Pour les articles non fournissables, donner les noms.
+ project[anom](articles) minus project[anom](catalogue join articles);
+
+#10 Trouver les identifiants des fournisseurs qui fournissent aussi bien des articles
+rouges que des articles verts
+ project[fid](select[acoul='rouge'](catalogue join articles)) join project[fid](select[acoul='vert'](catalogue join articles));
+
+
+#11 Trouver les noms des fournisseurs d’articles noirs.
+ project[fnom](select[acoul='noir'](catalogue join articles join fournisseurs));
+
+
+#12 Trouver les identifiants d’articles qui peuvent ˆetre fournis par plusieurs
+fournisseurs
+ project[aid,fid](select[aid=aid2 and fid <> fid2](catalogue join rename[fid2,aid2,prix2](catalogue)));
+
+#13 Trouver les noms des fournisseurs qui n’offrent ni des articles noirs, ni des
+articles argent´es
+ project[fnom](fournisseurs) minus project[fnom](select [acoul='noir'](catalogue join fournisseurs join articles)) union project[fnom](select[acoul='argente'](catalogue join fournisseurs join articles));
+

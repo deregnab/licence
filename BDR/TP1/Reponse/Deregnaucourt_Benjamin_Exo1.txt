@@ -1,0 +1,48 @@
+Nom:Deregnaucourt
+Prenom:Benjamin
+Date:19/09/2016
+
+
+﻿#exercice 1
+
+#1 Trouver les noms de fournisseurs:
+ Project[FNOM](fournisseurs);
+
+#2 Donner tous les d´etails des fournisseurs parisiens 
+Select[FAD='Paris'](fournisseurs);
+
+#3 Donner uniquement les noms des fournisseurs parisiens.
+ project[fnom](select[fad='Paris'](fournisseurs));
+
+#4 Donner les noms des articles verts.
+ project[anom](select[acoul='vert'](articles));
+
+#5 Trouver les identifiants d’articles `a moins de 20 euros
+ project[aid](select[prix<20](catalogue));
+
+#6 Trouver les identifiants de fournisseurs d’articles `a moins de 20 euros.
+ project[fid](select[prix<20](catalogue));
+
+#7 Quels fournisseurs offrent des articles entre 10 et 20 euros ? Donnez leurs
+identifiants
+ project[fid](select[prix>10 and prix<=20](catalogue));
+ project [fid]((select[prix<20](catalogue)) minus (select[prix<10](catalogue)));
+
+
+#8 Trouvez maintenant les fournisseurs d’articles entre 10 et 20 euros `a l’aide
+d’une intersection.
+[fid]((select[prix<20](catalogue)) minus (select[prix<10](catalogue)));
+ project[fid](select[prix>10](catalogue)) intersect project[fid](select[prix<=20](catalogue));
+
+#9 Donner les noms d’articles rouges ou verts. Trouver des requetes equivalentes,
+qui produisent cette liste
+project[anom](select[acoul='vert'](articles)) union project[anom](select[acoul='rouge'](articles));
+  
+   
+
+#10 : Donner les noms d’articles rouges et verts
+project[anom](select[acoul='vert'](articles)) intersect project[anom](select[acoul='rouge'](articles));
+
+
+
+

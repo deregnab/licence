@@ -1,0 +1,102 @@
+Deregnaucourt
+Benjamin
+TP5
+
+
+1 Pour chaque pilote certifié pour au moins deux avions, donnez l’eid et la portée maximale d’avion pour lesquels ce pilote est certifié.
+
+select eid, max(portee) from Employes e natural join  certifications c natural join avions a group by eid having count(eid)>2;
+    eid    | max  
+-----------+------
+ 552455318 | 3383
+ 567354612 | 8430
+ 269734834 | 8430
+ 390487451 | 7120
+ 142519864 | 8430
+ 573284895 | 7120
+ 141582651 | 6475
+ 556784565 | 7120
+
+
+2 Déterminez les noms de pilotes dont le salaire est inférieur au prix du vol le moins cher de l’aéroport Paris-Charles de Gaulle (CDG) vers La Tontouta en Nouvelle Calédonie (NOU).
+
+ select enom from employes e where salaire < (select min(prix) from vols where dep='CDG' and arr='NOU');
+      enom       
+-----------------
+ Oussama Moulana
+
+
+3 Quelles routes peuvent être volees par tous les pilotes gagnant > 100 000euros ? 2
+versions en SQL dont une avec ∃. 
+
+select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance<a.portee and e.salaire<100000) order by dep;
+
+select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance>a.portee and e.salaire<100000);
+
+select dep, arr,distance from vols v  where v.distance <= all(select a.portee from avions a natural join certifications c natural join employes e where e.salaire > 100000);
+
+
+
+dep         |arr          | distance 
+------------+-------------+----------
+ Madison    | Detroit     |      319
+ Detroit    | New York    |      470
+ Madison    | Chicago     |       84
+ Madison    | Pittsburgh  |      517
+ Madison    | Minneapolis |      247
+ Pittsburgh | New York    |      303
+
+
+4 Les noms des pilotes uniquement certifiés pour des avions de portée > 1500 km
+
+select enom from employes e natural join certifications c natural join avions a group by enom having every (a.portee >1500);
+
+select distinct enom from employes e natural join certifications c where not exists (select * from avions a natural join certifications c1 where c1.eid=c.eid and portee <= 1500);
+
+
+       enom        
+-------------------
+ Hakim Taleb
+ Anael Klein
+ Linda Mariencourt
+ Tommy Carpentier
+ Victor Goron
+ Valentin Owczarek
+ Astelia Massamba
+ Etienne Renard
+ Boubacar Diallo
+ Nicolas Baudin
+ Joris Robillard
+ Hugo Ermenidis
+ Ivonne Boulala
+
+
+5
+
+pas sur
+select distinct  enom from employes e natural join certifications c where exists (select enom from avions a natural join certifications c1 where a.portee > 1500 group by eid having count(eid)>2)
+ 
+;
+       enom        
+-------------------
+ Astelia Massamba
+ Ana Bozianu
+ Laura Giacco
+ Hakim Taleb
+ Ulysses Boulala
+ Etienne Renard
+ Teresa Klatzer
+ Boubacar Diallo
+ Nicolas Baudin
+ Anael Klein
+ Maxence Gens
+ Joris Robillard
+ Hugo Ermenidis
+ Linda Mariencourt
+ Ivonne Boulala
+ Tommy Carpentier
+ Victor Goron
+ Valentin Owczarek
+ Patricia Jones
+ Oussama Moulana
+
