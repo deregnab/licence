@@ -64,7 +64,7 @@ public abstract class Action {
 	}
 	
 	
-	public boolean isReady() {
+	boolean isReady() {
 		return this.isReady;
 
 	}

@@ -18,7 +18,7 @@ public abstract class ResourceActionTest {
 	
 	@Before
 	public void createData(){
-		ru=new ResourceUser<ResourceMock>("Mock");
+		ru=new ResourceUser<ResourceMock>();
 		rpm= new ResourcePoolMock(1);
 		rpmv=new ResourcePoolMock(0);
 	}

@@ -22,8 +22,8 @@
 <fullyQualifiedTypeName name="fil.coo.user.ResourceUser"/>
 <fullyQualifiedTypeName name="fil.coo.Resource.Basket"/>
 <fullyQualifiedTypeName name="fil.coo.Resource.Cubicle"/>
-<fullyQualifiedTypeName name="fil.coo.action.Action"/>
-<fullyQualifiedTypeName name="fil.coo.action.forseeable.ForeseeableAction"/>
-<fullyQualifiedTypeName name="fil.coo.exception.ActionFinishedException"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="fil.coo.exception.ActionFinishedException"/>
+<fullyQualifiedTypeName name="fil.coo.action.forseeable.ForeseeableAction"/>
+<fullyQualifiedTypeName name="fil.coo.action.Action"/>
 </qualifiedTypeNameHistroy>
