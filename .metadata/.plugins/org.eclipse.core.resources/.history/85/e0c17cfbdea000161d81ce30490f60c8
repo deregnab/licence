@@ -1,0 +1,16 @@
+package fil.coo.action.forseeable;
+
+import fil.coo.action.Action;
+
+public class UndressingAction extends ForeseeableAction
+{
+	public UndressingAction(int undress) {
+		super(undress);
+	}
+
+	public void doStep() throws ActionFinishedException
+	{
+		super.doStep();
+		System.out.println(" Undressing (" + this.getCurrentStep() + "/" + super.getNbStepsMax() + ")");
+	}
+}

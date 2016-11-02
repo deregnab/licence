@@ -1,0 +1,46 @@
+package fil.coo.scheduler;
+
+import fil.coo.Resource.BasketPool;
+import fil.coo.Resource.CubiclePool;
+import fil.coo.Resource.Resource;
+import fil.coo.exception.ActionFinishedException;
+import fil.coo.action.*;
+
+public class Swimmer extends Action
+{
+    protected final ResourcefulUser<Basket> basketUser;
+    protected final ResourcefulUser<Cubicle> cubicleUser;
+    protected final SequentialScheduler process;
+    protected String name;
+    
+	public Swimmer(String name, ResourcePool<Basket> baskets, ResourcePool<Cubicle> cubicles, int undress, int swim, int dress)
+	{
+		super();
+		this.name = name;
+        this.process = new SequentialScheduler();
+        this.basketUser = new ResourceUser<Basket>(name);
+        this.cubicleUser = new Resourceser<Cubicle>(name);
+
+        /*
+         * Create all action in order for swimmer
+         */
+        this.process.addAction(new TakeResourceAction<Basket>(baskets, basketUser));
+        this.process.addAction(new TakeResourceAction<Cubicle>(cubicles, cubicleUser));
+        this.process.addAction(new UndressingAction(undress));
+        this.process.addAction(new FreeResourceAction<Cubicle>(cubicles, cubicleUser));
+        this.process.addAction(new SwimmingAction(swim));
+        this.process.addAction(new TakeResourceAction<Cubicle>(cubicles, cubicleUser));
+        this.process.addAction(new DressingAction(dress));
+        this.process.addAction(new FreeResourceAction<Cubicle>(cubicles, cubicleUser));
+        this.process.addAction(new FreeResourceAction<Basket>(baskets, basketUser));
+	}
+
+	public boolean isFinished(){
+		return this.process.isFinished();
+	}
+	
+	public void doStep() throws ActionFinishedException{
+		System.out.println(this.name + "'s turn");
+		this.process.doStep();
+	}
+}

@@ -7,71 +7,60 @@ import fil.coo.Resource.ResourcePool;
 import fil.coo.exception.ActionFinishedException;
 import fil.coo.user.ResourceUser;
 
-public class TakeResourceAction<R extends Resource> extends ResourceAction {
-	private ResourcePool<R> pool;
-	private ResourceUser<R> user;
-	private boolean hasStarted;
+public class TakeResourceAction<R extends Resource> extends Action{
+    protected ResourcePool<R> pool;
+    protected ResourceUser<R> user;
+    protected boolean isReady;
+    protected boolean isInProgress;
+    protected boolean isFinished;
+	
+    /**
+     * define tjhe list of pool and user to take
+     * @param pool
+     * @param user
+     */
+	public TakeResourceAction(ResourcePool<R> pool, ResourceUser<R> user){
+		this.pool = pool;
+		this.user = user;
+	}
 	
 	/**
-	 * @param poolToUse The pool of resource to use.
-	 * @param aUser The user who will store the resource.
+	 * Return true if the action is ready
 	 */
-	public TakeResourceAction(ResourcePool<R> poolToUse, ResourceUser<R> aUser)
-	{
-		this.pool=poolToUse;
-		this.user = aUser;
-		
-		hasStarted = false;
-	}
-
 	@Override
 	public boolean isReady() {
-		if(!hasStarted && !isFinished())
-    		return true;
-    	else
-    		return false;
+		return this.isReady;
 	}
 
+	/**
+	 * return true if the action is in progress
+	 */
 	@Override
 	public boolean isInProgress() {
-		if(!isFinished() && !isReady())
-			return true;
-		else
-			return false;
+		return this.isInProgress;
 	}
 
+	/**
+	 * return true if the action is finished
+	 */
 	@Override
 	public boolean isFinished() {
-		if(user.getResource()==null)
-		{
-			return false;
-		}
-			
-		else
-		{
-			return true;
-		}
+		return this.isFinished;
 	}
 
 	@Override
 	public void doStep() throws ActionFinishedException {
-		
-		hasStarted = true;
-		
-		System.out.print("trying to take resource from pool ... ");
-		if(!isFinished())
-		{
-			try {
-				user.setResource(pool.provideResource());
-				System.out.println("success");
-			} catch(NoSuchElementException e) {
-				System.out.println("failed");
-			}
-			
-		}
-		else
-			throw new ActionFinishedException();
-		
+		System.out.print(" " + this.user.getName() + " trying to take resource from " + this.pool.toString() + "... ");
+		try{
+			R resource = this.pool.provideResource();
+			this.user.setResource(resource);
+			this.isReady = false;
+			this.isFinished = true;
+			System.out.println("success");
+          	}catch(NoSuchElementException e){
+          		System.out.println("failure");
+          	}
 	}
+	
 
 }

@@ -4,45 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ *   Abstract Class for all Resource Pool	
+ */
+public abstract class ResourcePool<R extends Resource>{
+	private List<R> pool;
+	private List<R> used;
 
+	protected abstract R createResource();
 
-public abstract class ResourcePool <R extends Resource> {
-
-	List<R> availableList=new ArrayList<R>();
-	List<R> unavailableList=new ArrayList<R>();
-	public ResourcePool(int n){
-		for(int i=0; i<n; i++){
-			availableList.add(this.createResource());
-		}
-		
-	}
-	
-	public abstract R createResource();
-	
-	public R provideResource(){
-		if(availableList.isEmpty()){
-			throw new NoSuchElementException();
-		}
-		else{
-			R tmp=this.availableList.remove(0);
-			return tmp;
+	/**
+	 * Create pool and user for resource
+	 */
+	public ResourcePool(int nb)	{
+		this.pool = new ArrayList<R>(nb);
+		this.used = new ArrayList<R>(nb);
+		for (int i = 0 ; i < nb ; i++)	{
+			pool.add(this.createResource());
 		}
 	}
-	
-	public boolean freeResource(R res){
-		
-		for (int i=0;i<unavailableList.size();i++){
-			
-			if(unavailableList.get(i)==res){
-				return true;
-			
-			}
-				throw new IllegalArgumentException();
-		
+
+	/**
+	 * return first resource
+	 */
+	public R provideResource()	{
+		if (!pool.isEmpty()){
+			R Resource = pool.get(0);
+			pool.remove(0);
+			used.add(Resource);
+			return Resource;
 		}
-		return false;
+		throw new NoSuchElementException();
 	}
 
-	
+	/**
+	 * free the Resource in param
+	 * @param r Resource of the ResourcePool
+	 */
+	public void freeResource(R r){
+		if (used.remove(r))
+			pool.add(r);
+		else
+			throw new IllegalArgumentException();
+	}
 
 }

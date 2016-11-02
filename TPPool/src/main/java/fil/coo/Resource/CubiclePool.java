@@ -13,4 +13,11 @@ public class CubiclePool extends ResourcePool<Cubicle> {
 		return new Cubicle();
 	}
 
+	/**
+	 * return a string of the type of the Pool
+	 */
+		public String toString(){
+			
+			return ("Cubicle Pool");
+		}
 }

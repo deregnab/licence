@@ -18,4 +18,12 @@
 <fullyQualifiedTypeName name="main.action.Attack"/>
 <fullyQualifiedTypeName name="main.action.Move"/>
 <fullyQualifiedTypeName name="main.action.Use"/>
+<fullyQualifiedTypeName name="fil.coo.Resource.ResourcePool"/>
+<fullyQualifiedTypeName name="fil.coo.user.ResourceUser"/>
+<fullyQualifiedTypeName name="fil.coo.Resource.Basket"/>
+<fullyQualifiedTypeName name="fil.coo.Resource.Cubicle"/>
+<fullyQualifiedTypeName name="fil.coo.action.Action"/>
+<fullyQualifiedTypeName name="fil.coo.action.forseeable.ForeseeableAction"/>
+<fullyQualifiedTypeName name="fil.coo.exception.ActionFinishedException"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

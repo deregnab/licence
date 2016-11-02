@@ -1,0 +1,21 @@
+package fil.coo.Resource;
+
+public class BasketPool extends ResourcePool<Basket>{
+
+	public BasketPool(int n) {
+		super(n);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected Basket createRessource()
+	{
+		return (new Basket());
+	}
+
+	@Override
+	public String toString(){
+		return "pool basket";
+	}
+
+}

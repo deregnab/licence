@@ -1,66 +1,64 @@
 package fil.coo.action;
 
+import java.util.NoSuchElementException;
 import fil.coo.Resource.Resource;
 import fil.coo.Resource.ResourcePool;
 import fil.coo.exception.ActionFinishedException;
 import fil.coo.user.ResourceUser;
 
-public class FreeResourceAction<R extends Resource> extends ResourceAction{
-	private ResourcePool<R> pool;
-	private ResourceUser<R> user;
-	private boolean hasStarted;
+public class FreeResourceAction<R extends Resource> extends Action{
+    protected ResourcePool<R> pool;
+    protected ResourceUser<R> user;
+    protected boolean isReady;
+    protected boolean isInProgress;
+    protected boolean isFinished;
 	
-	/**
-	 * @param poolToUse the pool taking the resource.
-	 * @param aUser the user that will release the resource.
-	 */
-	public FreeResourceAction(ResourcePool<R> poolToUse, ResourceUser<R> aUser)
-	{
-		this.pool=poolToUse;
-		this.user=aUser;
-		
-		hasStarted = false;
+    
+    /**
+     * assign a User and a Pool to the action
+     * @param pool
+     * @param user
+     */
+	public FreeResourceAction(ResourcePool<R> pool, ResourceUser<R> user){
+		this.pool = pool;
+		this.user = user;
 	}
 
+	/**
+	 * return true  if the action is ready
+	 */
 	@Override
 	public boolean isReady() {
-		if(!isInProgress() && !isFinished())
-			return true;
-		else
-			return false;
+		return this.isReady;
 	}
 
+	/**
+	 * return true if the action is in progress
+	 */
 	@Override
 	public boolean isInProgress() {
-		return (hasStarted && !isFinished());
+		return this.isInProgress;
 	}
 
+	/**
+	 * return true if the action is finished
+	 */
 	@Override
 	public boolean isFinished() {
-		if(user.getResource()!=null)
-		{
-			System.out.println("Resource is not free");
-			return false;
-		}
-		else
-		{
-			System.out.println("freeing resource from pool ");
-			return true;
-		}
+		return this.isFinished;
 	}
-
+	
 	@Override
 	public void doStep() throws ActionFinishedException {
-		
-		hasStarted = true;
-		
-		if(!isFinished())
-		{
-			pool.freeResource(user.getResource());
-			user.resetResource();
-		}
-		else
-			throw new ActionFinishedException();
+		System.out.println(" " + this.user.getName() + " free " + this.pool.toString() + "... ");
+		R resource = this.user.getResource();
+		try{
+			this.pool.freeResource(resource);
+			this.isReady = false;
+			this.isFinished = true;
+          	}catch(NoSuchElementException e){
+          		System.out.println("bug");
+          	}
 	}
 
 }

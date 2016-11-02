@@ -12,5 +12,12 @@ public class BasketPool extends ResourcePool<Basket>{
 		// TODO Auto-generated method stub
 		return new Basket();
 	}
-
+	
+	/**
+	 * return the name of the pool
+	 */
+	public String toString(){
+		
+		return ("Basket Pool ");
+	}
 }
