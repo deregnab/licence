@@ -1,10 +1,14 @@
 # BDR - TP5
 # Valentin Dambrine
-
+    
 # Question 1 (f) : Pour chaque pilote certifié pour au moins deux avions, donnez l’eid et la portée
 maximale d’avion pour lesquels ce pilote est certifié.
 
-select eid, max(portee) from avions natural join certifications group by eid having count(aid) >= 2;
+SELECT eid, max(portee) 
+    FROM avions 
+        NATURAL JOIN certifications 
+    GROUP BY eid 
+    HAVING count(aid) >= 2;
 
 # Résultats :
 
@@ -30,7 +34,15 @@ select eid, max(portee) from avions natural join certifications group by eid hav
 # Question 2 (f) : Déterminez les noms de pilotes dont le salaire est inférieur au prix du vol le moins
  cher de l’aéroport Paris-Charles de Gaulle (CDG) vers La Tontouta en Nouvelle Calédonie (NOU).
 
-select enom from employes natural join vols where eid in (select eid from certifications) and dep='CDG' and arr='NOU' group by enom, salaire having salaire < min(prix);
+SELECT enom 
+    FROM employes 
+        NATURAL JOIN vols 
+    WHERE eid IN (SELECT eid 
+                    FROM certifications) 
+        AND dep='CDG' 
+        AND arr='NOU' 
+    GROUP BY enom, salaire 
+    HAVING salaire < min(prix);
 
 # Résultats :
 
@@ -42,13 +54,26 @@ select enom from employes natural join vols where eid in (select eid from certif
  versions en SQL dont une avec ∃. Puis, en TRC, faites et rendez le 7 novembre sur papier l’exo
  tel que décrit dans le fichier TRC queries student.txt disponible sur Moodle.
 
-# Version avec exists :
+# Version avec EXISTS :
 
-select distinct dep, arr, distance from vols v where not exists (select * from employes e natural join certifications c natural join avions a where v.distance>a.portee and e.salaire<100000);
+SELECT DISTINCT dep, arr, distance 
+    FROM vols v 
+    WHERE NOT EXISTS (SELECT * 
+                        FROM employes e 
+                            NATURAL JOIN certifications c 
+                            NATURAL JOIN avions a 
+                        WHERE v.distance>a.portee 
+                            AND e.salaire<100000);
 
 # Version autre :
 
-select v.dep, v.arr, v.distance from vols v where v.distance <= all (select a.portee from employes e natural join certifications c natural join avions a where e.salaire > 100000);
+SELECT v.dep, v.arr, v.distance 
+    FROM vols v 
+    WHERE v.distance <= all (SELECT a.portee 
+                                FROM employes e 
+                                    NATURAL JOIN certifications c 
+                                    NATURAL JOIN avions a 
+                                WHERE e.salaire > 100000);
 
 # Résultats :
 
@@ -62,16 +87,30 @@ select v.dep, v.arr, v.distance from vols v where v.distance <= all (select a.po
  Madison    | Detroit     |      319
 
 # Question 4 : Les noms des pilotes uniquement certifiés pour des avions de portée > 1500 km.
- Faites deux versions en SQL, l’une avec group by et EVERY, l’autre avec ∃. Faites également la
+ Faites deux versions en SQL, l’une avec GROUP BY et EVERY, l’autre avec ∃. Faites également la
  version TRC, directement sur le fichier que vous rendrez avec votre TP.
 
-# Version avec group by et EVERY :
+# Version avec GROUP BY et EVERY :
 
-select distinct enom from employes natural join certifications natural join avions group by enom having every(portee > 1500);
+SELECT DISTINCT enom 
+    FROM employes 
+        NATURAL JOIN certifications 
+        NATURAL JOIN avions 
+    GROUP BY enom 
+    HAVING every(portee > 1500);
 
-# Version avec exists :
+# Version avec EXISTS :
 
-select enom from employes e where eid in (select eid from certifications) and not exists (select * from avions a natural join certifications c where e.eid = c.eid and portee <= 1500) order by enom;
+SELECT enom 
+    FROM employes e 
+    WHERE eid IN (SELECT eid 
+                    FROM certifications) 
+        AND NOT EXISTS (SELECT * 
+                            FROM avions a 
+                                NATURAL JOIN certifications c 
+                            WHERE e.eid = c.eid 
+                                AND portee <= 1500) 
+    ORDER BY enom;
 
 # Résultats :
 
@@ -91,25 +130,160 @@ select enom from employes e where eid in (select eid from certifications) and no
  Valentin Owczarek
  Victor Goron
 
-# Question 5 : Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une
- portée supérieure à 1500 km, pour au moins deux tels avions.
+# Question 5 : Affichez les noms des pilotes qui sont uniquement certifiés pour des avions avec une portée supérieure à 1500 km, pour au moins deux tels avions.
 
-select enom from employes natural join certifications c natural join avions where eid in (select eid from certifications) and not exists (select * from avions a where c.aid = a.aid and portee < 1500)group by enom having count(aid) >= 2 order by enom;
-    enom        
+SELECT enom
+    FROM employes
+        NATURAL JOIN certifications c
+        NATURAL JOIN avions
+    GROUP BY enom
+    HAVING every(portee > 1500) and count(aid) >= 2
+    ORDER BY enom;
+
+# Résultats :
+
+       enom        
 -------------------
- Ana Bozianu
  Anael Klein
  Boubacar Diallo
  Etienne Renard
  Hugo Ermenidis
  Ivonne Boulala
  Joris Robillard
- Laura Giacco
  Linda Mariencourt
  Nicolas Baudin
- Patricia Jones
- Teresa Klatzer
  Tommy Carpentier
  Valentin Owczarek
  Victor Goron
 
+# Question 6 : Donnez les noms des pilotes qui sont certifiés uniquement pour des avions d'une portée supérieure à 1500km, et qui sont certifiés pour au moins un type de Boeing.
+
+SELECT DISTINCT enom
+    FROM employes
+        NATURAL JOIN certifications c NATURAL JOIN avions
+    WHERE aid = some(SELECT aid
+                            FROM avions
+                            WHERE anom like 'Boeing%')
+GROUP BY enom
+HAVING every(portee > 1500);
+
+# Résultats :
+
+       enom        
+-------------------
+ Ana Bozianu
+ Anael Klein
+ Etienne Renard
+ Ivonne Boulala
+ Joris Robillard
+ Laura Giacco
+ Patricia Jones
+ Teresa Klatzer
+ Valentin Owczarek
+ Victor Goron
+
+# Question 7 : Trouvez l'identifiant de l'employé avec le salaire le deuxième plus hait. N'utiliser ni limit, ni ORDER BY.
+
+SELECT eid 
+    FROM employes 
+    WHERE salaire = (SELECT max(salaire) 
+                        FROM employes 
+                        WHERE salaire < (SELECT max(salaire) 
+                                            FROM employes ));
+
+# Résultats :
+
+    eid    
+-----------
+ 269734834
+
+# Question 8 : Affichez les noms des pilotes qui peuvent piloter des avions d'une portée supérieure à 2000km, mais qui ne sont certifiés pour aucun Boeing.
+
+SELECT DISTINCT enom
+    FROM employes
+        NATURAL JOIN certifications c 
+        NATURAL JOIN avions
+    WHERE aid  NOT IN (SELECT aid
+                            FROM avions
+                            WHERE anom like 'Boeing%')
+    GROUP BY enom
+    HAVING EVERY(portee > 2000);
+
+# Résultats :
+
+       enom       
+------------------
+ Astelia Massamba
+ Boubacar Diallo
+ Hakim Taleb
+ Hugo Ermenidis
+ Nicolas Baudin
+
+# Question 9 : Affichez les noms des pilotes qui ne sont pas des pilotes, mais qui gagnent plus que le revenu moyen des pilotes.
+
+SELECT enom, salaire
+    FROM employes 
+    WHERE eid NOT IN (SELECT eid
+                        FROM certifications)
+        AND salaire > (SELECT AVG(salaire) 
+                        FROM employes
+                            WHERE eid IN (SELECT eid 
+                                            FROM certifications));
+
+# Résultats :
+
+ enom | salaire 
+------+---------
+
+# Question 10 : Calculer la différence entre le revenu moyen des pilotes et le revenu moyen de tous les employés (pilotes inclus).
+
+SELECT AVG(e.salaire) - AVG(e2.salaire) AS difference 
+    FROM employes e, employes e2 
+    WHERE e.eid IN (SELECT eid 
+                        FROM certifications);
+
+# Résultats :
+
+     difference     
+--------------------
+ 42400.709677419355
+
+# Question 11 : Un client désire voyager de Madison à New York avec max deux escales. Donnez la liste des heures de départ à partir de Madison si le client veut arriver à New York avant 18h.
+
+SELECT v1.h_dep
+    FROM vols v1
+        INNER JOIN vols v2 ON v1.arr = v2.dep
+        INNER JOIN vols v3 ON v2.arr = v3.dep
+    WHERE v1.dep = 'Madison'
+        AND v3.arr = 'New York'
+        AND v1.h_arr < v2.h_dep
+        AND v2.h_arr < v3.h_dep
+        AND EXTRACT(hour FROM v3.h_arr) < 18
+
+UNION
+
+SELECT v1.h_dep
+    FROM vols v1
+        INNER JOIN vols v2 ON v1.arr = v2.dep
+    WHERE v1.dep = 'Madison'
+        AND v2.arr = 'New York'
+        AND v1.h_arr < v2.h_dep
+        AND EXTRACT(hour FROM v2.h_arr) < 18
+
+UNION
+
+SELECT h_dep
+    FROM vols
+    WHERE dep = 'Madison'
+        AND arr = 'New York'
+        AND EXTRACT(hour FROM h_arr) < 18;
+
+# Résultats :
+
+        h_dep        
+---------------------
+ 2016-04-12 08:32:00
+ 2016-04-12 07:05:00
+ 2016-04-12 06:15:00
+
+# Question 12 :
