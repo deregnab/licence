@@ -1,5 +1,5 @@
-# BDR - TP5
-# Valentin Dambrine
+﻿# BDR - TP5
+# Benjamin Deregnaucourt
     
 # Question 1 (f) : Pour chaque pilote certifié pour au moins deux avions, donnez l’eid et la portée
 maximale d’avion pour lesquels ce pilote est certifié.

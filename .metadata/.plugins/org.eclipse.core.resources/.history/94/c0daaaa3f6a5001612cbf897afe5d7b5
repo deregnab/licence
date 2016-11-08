@@ -1,0 +1,5 @@
+package main.answertype;
+
+public class NumericalAnswer {
+
+}

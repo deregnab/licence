@@ -1,0 +1,27 @@
+package test;
+
+import main.IQuestion;
+import main.Question;
+import main.QuestionnaireUI;
+
+public class MockQuestionnaireUI implements QuestionnaireUI {
+
+	@Override
+	public void printQuestionText(Question question) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void printFinalScore(int score) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String readAnswer(IQuestion question) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

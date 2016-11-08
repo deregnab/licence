@@ -1,0 +1,19 @@
+package main.answertype;
+
+import main.Answer;
+
+public class BooleanAnswer implements Answer {
+
+	protected boolean answer;
+	@Override
+	public boolean isCorrectAnswer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public boolean getAnswer(){
+		return answer;
+	}
+
+
+}

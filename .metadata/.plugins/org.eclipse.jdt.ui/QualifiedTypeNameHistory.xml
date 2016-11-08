@@ -26,4 +26,8 @@
 <fullyQualifiedTypeName name="fil.coo.exception.ActionFinishedException"/>
 <fullyQualifiedTypeName name="fil.coo.action.forseeable.ForeseeableAction"/>
 <fullyQualifiedTypeName name="fil.coo.action.Action"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="main.Answer"/>
+<fullyQualifiedTypeName name="main.QuestionnaireUI"/>
 </qualifiedTypeNameHistroy>

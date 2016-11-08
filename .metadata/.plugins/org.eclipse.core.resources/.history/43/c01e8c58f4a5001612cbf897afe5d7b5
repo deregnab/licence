@@ -1,0 +1,16 @@
+package main;
+
+public class Questionnaire {
+
+	
+	protected List<Question> Qlist;
+	protected QuestionnaireUI ui =new QuestionnaireUIConsole();
+	
+	public void askAll(){
+		
+		for(Question question:this.Qlist){
+			
+			
+		}
+	}
+}
