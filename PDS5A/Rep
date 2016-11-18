@@ -1,5 +1,0 @@
-8.2) Les processus fils continuent d'afficher leur pid mais le père n'indique plus le pid du fils kill
-
-8.3) Le mot-clé <defunct> apparait a coté du processus que l'on vient de tuer. Le processus fils passe alors dans un état zombie car le père n'a pas encore été notifié de la mort du fils via le signal SIGCHILD
-
-Une fois la saisie clavier effectuée, le processus père reçoit le signal et le processus fils est supprimé. Le processus fils n'apparait donc plus dans la liste des processus actifs via la commande ps -a.

@@ -1,1 +1,0 @@
-8.2) Les processus fils continuent d'afficher leur pid mais le père n'indique plus le pid du fils kill
