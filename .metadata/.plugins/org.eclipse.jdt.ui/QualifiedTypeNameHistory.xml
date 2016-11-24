@@ -30,4 +30,10 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="main.Answer"/>
 <fullyQualifiedTypeName name="main.QuestionnaireUI"/>
+<fullyQualifiedTypeName name="fil.coo.view.QuestionnaireUIConsole"/>
+<fullyQualifiedTypeName name="main.java.fil.coo.factory.AnswerFactory"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="fil.coo.question.Question"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
 </qualifiedTypeNameHistroy>

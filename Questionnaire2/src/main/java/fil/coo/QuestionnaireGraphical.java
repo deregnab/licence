@@ -1,0 +1,37 @@
+package main.java.fil.coo;
+
+import java.lang.reflect.InvocationTargetException;
+
+
+
+public class QuestionnaireGraphical extends Questionnaire {
+
+	public QuestionnaireGraphical() {
+	}
+
+	@Override
+	public void askAll() {
+
+		try {
+			this.ui = new Graphic(this);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

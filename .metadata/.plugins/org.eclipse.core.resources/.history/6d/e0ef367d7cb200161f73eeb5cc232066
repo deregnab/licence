@@ -1,0 +1,36 @@
+package main.java.fil.coo.view;
+
+import main.java.fil.coo.question.Question;
+
+/**
+ * User Interface for the Questionnaire.
+ * 
+ * @author dambrine
+ *
+ */
+public interface QuestionnaireUI {
+
+	/**
+	 * Prints a given question.
+	 * 
+	 * @param question
+	 *            a given question.
+	 */
+	public void printQuestionText(Question question);
+
+	/**
+	 * Prints the user final score, which is the sum of every good answer
+	 * fulfilled.
+	 * 
+	 * @param score
+	 *            the user final score.
+	 */
+	public void printFinalScore(int score);
+
+	/**
+	 * Reads the answer fulfilled by the user
+	 * @param question
+	 * @return
+	 */
+	public String readAnswer(Question question);
+}

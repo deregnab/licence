@@ -1,0 +1,48 @@
+package main.java.fil.coo.answer;
+
+/**
+ * This class extends Answer with the generic type Boolean in order to create True/False questions
+ * @author Benjamin
+ *
+ */
+public class BooleanAnswer extends Answer<Boolean> {
+
+	/**
+	 * Extended Constructor from Answer 
+	 * @param answer the True/False question to ask to the player
+	 */
+	public BooleanAnswer(String answer) {
+		super(answer);
+	}
+
+	public boolean typeCorrect(String answer) {
+
+		System.out.println("BooleanAnswer : typeCorrect called with {" + answer + "}");
+		
+		for (EBoolean b : EBoolean.values()) {
+			if (answer.toLowerCase().equals(b.bool()))
+				return true;
+		}s
+		
+		return false;
+	}
+
+	public boolean isCorrectAnswer(String answ) {
+		
+		return this.answer.equals(answ.toLowerCase());
+	}
+
+	public String getCorrectAnswer() {
+
+		return this.answer + "";
+	}
+
+	public String getType() {
+		return "oui/non";
+	}
+	
+	public String getRealType() {
+		return "boolean";
+	}
+
+}

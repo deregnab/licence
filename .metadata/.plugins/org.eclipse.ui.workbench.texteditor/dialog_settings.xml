@@ -2,18 +2,25 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Resource" key="selection"/>
-		<item value="false" key="casesensitive"/>
+		<item value="endButton" key="selection"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="answ"/>
+			<item value="finishButton"/>
+			<item value="listQuestions"/>
+			<item value="principlePanel"/>
+			<item value="principalePanel"/>
 			<item value="Ressource"/>
 			<item value="AttackAction"/>
 			<item value="MoveAction"/>
-			<item value="int"/>
 		</list>
 		<list key="replacehistory">
+			<item value="endButton"/>
+			<item value="Questions"/>
+			<item value="mainPanel"/>
 			<item value="Resource"/>
 			<item value="ActionAttack"/>
 			<item value="ActionMove"/>

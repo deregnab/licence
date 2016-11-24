@@ -1,0 +1,41 @@
+package fil.coo;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import fil.coo.factory.QuestionnaireFactory;
+
+public class Launch {
+
+	public static void main(String[] args) {
+		
+		String fileName = "res/quest_tolkien.txt";
+		Questionnaire questionnaire = null;
+
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("\t=== QUESTIONNAIRE ===\n");
+			System.out.println("Choix de l'interface :");
+			System.out.println("1. Interface console");
+			System.out.println("2. Interface graphique");
+
+			/*
+			 * Here is used a String as result and not an int because the
+			 * nextInt method throws an exception in case of unexpected
+			 * characters
+			 */
+			String choice = sc.nextLine();
+			while (Integer.parseInt(choice) != 1 && Integer.parseInt(choice) != 2)
+				choice = sc.nextLine();
+			switch (Integer.parseInt(choice)) {
+			case 1:
+				questionnaire = QuestionnaireFactory.FACTORY.createQuestionnaire(fileName, false);
+			case 2:
+				questionnaire = QuestionnaireFactory.FACTORY.createQuestionnaire(fileName, true);
+			}
+			questionnaire.askAll();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,47 @@
+package main.java.fil.coo.answer;
+
+/**
+ * This interface indicates the basics methods to be implemented for the
+ * creation of an Answer instance.
+ * 
+ * @author dambrine
+ *
+ */
+public interface IAnswer {
+
+	/**
+	 * Checks if the filled answer is correct in its type.
+	 * 
+	 * @param answ
+	 *            the filled answer by the user.
+	 * @return <code>true</code> if the type of the answer is correct,
+	 *         <code>false</code> else.
+	 */
+	public boolean typeCorrect(String answ);
+
+	/**
+	 * Checks if the filled answer is the correct answer.
+	 * 
+	 * @param answ
+	 *            the filled answer by the user.
+	 * @return <code>true</code> if the filled answer is the good one,
+	 *         <code>false</code> else.
+	 */
+	public boolean isCorrectAnswer(String answ);
+
+	/**
+	 * Gives the correct answer.
+	 * 
+	 * @return the correct answer.
+	 */
+	public String getCorrectAnswer();
+
+	/**
+	 * Gets the answer type.
+	 * 
+	 * @return the answer type.
+	 */
+	public String getType();
+	
+	public String getRealType();
+}

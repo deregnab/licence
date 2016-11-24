@@ -1,0 +1,58 @@
+package fil.coo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fil.coo.question.Question;
+import fil.coo.view.QuestionnaireUI;
+import fil.coo.view.QuestionnaireUIConsole;
+
+/**
+ * Represents a Questionnaire object, which is a succession of questions.
+ * 
+ * @author dambrine
+ *
+ */
+public class QuestionnaireConsole extends Questionnaire {
+
+	public QuestionnaireConsole() {
+		this.ui = new QuestionnaireUIConsole();
+	}
+
+	@Override
+	public void askAll() {
+		for (Question question : this.questions)
+			askOneQuestion(question);
+		this.ui.printFinalScore(score);
+
+	}
+
+	/**
+	 * Asks one question, checking its type before accepting it or not.
+	 * 
+	 * @param question
+	 */
+	public void askOneQuestion(Question question) {
+		this.ui.printQuestionText(question);
+		String answer = this.ui.readAnswer(question);
+		while (!question.typeCorrect(answer))
+			answer = this.ui.readAnswer(question);
+		this.checkAnswer(answer, question);
+	}
+
+	/**
+	 * Checks the fulfilled answer and update the score if needed.
+	 * 
+	 * @param answer
+	 *            the fulfilled answer
+	 * @param question
+	 *            the question
+	 */
+	public void checkAnswer(String answer, Question question) {
+		if (question.isCorrectAnswer(answer)) {
+			System.out.println("correct (" + question.getPoints() + " points)");
+			score += question.getPoints();
+		} else
+			System.out.println("incorrect, la bonne réponse est : " + question.getCorrectAnswer());
+	}
+}

@@ -1,5 +1,0 @@
-package fil.coo.action;
-
-public class UndressingAction extends Action {
-
-}

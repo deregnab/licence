@@ -1,0 +1,40 @@
+package main.java.fil.coo.factory;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+import main.java.fil.coo.answerpanel.AnswerPanel;
+import main.java.fil.coo.question.Question;
+
+
+
+public class AnswerPanelFactory {
+
+	public static final AnswerPanelFactory FACTORY = new AnswerPanelFactory();
+
+	private AnswerPanelFactory() {
+	}
+	
+	public AnswerPanel buildAnswerPanel(Question question, String type) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		
+		System.out.println("AnswerPanel : "+ question.getText() + " type : "+type);
+		String className = getClassName(type);
+		try {
+			@SuppressWarnings("unchecked")
+			Class<? extends AnswerPanel> sc = (Class<? extends AnswerPanel>) Class.forName("fil.coo.answerpanel." + className);
+			Constructor<? extends AnswerPanel> cons = sc.getConstructor(Question.class);
+			AnswerPanel a = cons.newInstance(question);
+			System.out.println(a);
+			return a;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String getClassName(String type) {
+		type = type.toLowerCase();
+		char c = type.charAt(0);
+		return (c + "").toUpperCase() + type.substring(1) + "AnswerPanel";
+	}
+}

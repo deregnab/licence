@@ -1,0 +1,98 @@
+package main.java.fil.coo;
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+
+import main.java.fil.coo.answerpanel.AnswerPanel;
+import main.java.fil.coo.factory.AnswerPanelFactory;
+import main.java.fil.coo.question.Question;
+import main.java.fil.coo.view.QuestionnaireUI;
+
+
+public class Graphic extends JFrame implements ActionListener, QuestionnaireUI {
+
+	int points=0;
+	private List<AnswerPanel> listPanel;
+	
+	public Graphic(Questionnaire questionnaire) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		JScrollPane scrollPane;
+		JPanel mainPanel = new JPanel();
+		List<Question> Questions = questionnaire.getListQuestions();
+		Button endButton = new Button("J'ai fini");
+		int v=ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
+	    int h=ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER; 
+	    
+		listPanel = new ArrayList<AnswerPanel>();
+		
+		for(Question q : Questions){
+			System.out.println(q.getRealAnswerType());
+			listPanel.add(AnswerPanelFactory.FACTORY.buildAnswerPanel(q, q.getRealAnswerType()));
+		}
+		
+		//On définit le layout à utiliser sur le content pane
+		//5 lignes sur 1 colonnes
+
+		mainPanel.setLayout(new BoxLayout( mainPanel, BoxLayout.Y_AXIS ));
+		for (int i=0;i<listPanel.size();i++){
+			mainPanel.add(listPanel.get(i));
+		}
+		mainPanel.add(endButton);
+		scrollPane = new JScrollPane(mainPanel,v,h);
+		scrollPane.setPreferredSize(new Dimension(800,800));
+		scrollPane.setBounds(200,750,1000,250);
+		
+		
+		endButton.addActionListener(this);
+		
+		this.setTitle("Questionnaire GraphicMode");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.add(scrollPane);
+		this.getContentPane().setBackground(Color.gray);
+		this.pack();
+		this.setVisible(true);
+
+	}      
+
+	public void actionPerformed(ActionEvent e) {
+		for(AnswerPanel ap : listPanel){
+			points+=ap.isGoodAnswerAddPoints();
+		}
+		System.out.println(points);
+
+	}
+
+	public void printQuestionText(Question question) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	public void printFinalScore(int score) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	public String readAnswer(Question question) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
