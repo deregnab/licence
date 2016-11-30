@@ -1,0 +1,113 @@
+# BDR : TP6 par Valentin DAMBRINE
+
+# Exercice : Jalousie
+
+
+# 4. On remarque que l'on n'a pas de resultat pour lapin
+
+DES> femme(lapin)
+
+{
+}
+Info: 0 tuples computed. 
+
+DES> femme(yolande)
+
+{
+  femme(yolande)
+}
+Info: 1 tuple computed.
+
+Il y a aussi est_femme(lapin). dans le fichier amour.dl
+
+# 5. DES> /listing femme
+
+femme(jody).
+femme(mia).
+femme(yolande).
+
+Info: 3 rules listed.
+
+# 6. DES> aime(vincent,X),femme(X)
+
+# 7. On a pas d'homme, donc on fait "not femme" mais dans ce cas on peut avoir ce qui n'est ni homme ni femme
+DES> aime(vincent,X),not femme(X)
+
+On a donc ajouté "homme" (vincent et pierre, on suppose que lapin et mon_chou ne sont pas humains)
+
+DES> aime(vincent,X), homme(X)
+
+# 8. DES> est_jaloux_de(vincent,X)
+
+# 9. DES> est_jaloux_de(vincent,_)
+
+Info: Processing:
+  answer :-
+    est_jaloux_de(vincent,_).
+{
+  answer
+}
+Info: 1 tuple computed.
+
+Il y a une réponse donc il est jaloux
+On peut faire jaloux(vincent)
+
+
+# Exercice : Boutique
+
+
+# 10. estrouge(X) :- articles(X,_,'rouge').
+deuxrouges(X) :- count(fournisseurs(FID,X,_),catalogue(FID,Y,_),estrouge(Y),VAL), VAL>=2.
+
+
+# 11. bonmarche(X) :- fournisseurs(FID,X,_), catalogue(FID,_,PRIX), PRIX<10.
+
+
+# Exercice : Graphe
+
+
+# 12. Voir graph.dl
+
+# 13. P(X, Y)
+
+Il y a 66 réponses pour 11 cycles, soit 11 + 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1
+
+# 14. On ajoute deux cycles
+P(X,Y)
+
+Il y a 91 réponses pour 13 cycles, soit n + n-1 + n-2 + ... + n-n
+
+# 15. La valeur des réponses vaut (n nombre de cycle) la somme de 0 à n de n - i.
+Le cycle 0 passe pas par tout les cycles, 1 par n-1, 2 par n-2,.., n par n-n.
+
+# 16. impair(X,Y) dans graph.dl
+
+
+# Exercice : CriseFinanciere
+
+
+# 17. doit_argent(X,Y). dans crisefinancier.pl
+
+# 18. evite(X,Y). dans crisefinancier.pl
+On a une boucle infinie
+
+# 19. Le SWI boucle tandis que DES ne boucle pas mais je ne sais pas pourquoi
+
+
+# Exercice : Princesses
+
+
+# 21/22. (1)P & (2)T (aff 1 vrai) ou (1)P & (2)T | (1)T & (2)P (aff 2 vrai)
+
+# 23. fichier princesse2.dl
+
+# 24. fichier princesse3.dl
+
+
+# Exercice : Sat
+
+# 25. fichier sat2.dl
+
+# 26. 2⁵ avec ABCDE et ici on a 14 tuples, soit 43.75%
+
+# 27. fichier sat3.dl

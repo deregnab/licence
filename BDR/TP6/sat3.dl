@@ -1,0 +1,23 @@
+
+% A and(B or (D and E))
+bool(0).
+bool(1).
+
+p1(A,B,D,E) :- A=1,bool(A),bool(B),bool(D),bool(E).
+
+p2(A,B,D,E) :- D=1,bool(A),bool(B),bool(D),bool(E).
+
+p3(A,B,D,E) :- E=1,bool(A),bool(B),bool(D),bool(E).
+
+
+p4(A,B,D,E) :- B=1,bool(A),bool(B),bool(D),bool(E).
+
+p5(A,B,D,E) :- p2(A,B,D,E),p3(A,B,D,E).
+
+p6(A,B,D,E) :- p4(A,B,D,E).
+p6(A,B,D,E) :- p5(A,B,D,E).
+
+
+r(A,B,D,E) :- p1(A,B,D,E),p6(A,B,D,E).
+%-----------
+sat(A,B,D,E) :- r(A,B,D,E),bool(A),bool(B),bool(D),bool(E).

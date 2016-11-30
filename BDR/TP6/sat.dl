@@ -1,0 +1,19 @@
+
+% (A or not B) and (A or not C) and (B or C) and not A
+bool(0).
+bool(1).
+
+p1(A,B,C) :- A=1,bool(A),bool(B),bool(C).
+p1(A,B,C) :- B=0,bool(A),bool(B),bool(C).
+
+p2(A,B,C) :- A=1,bool(A),bool(B),bool(C).
+p2(A,B,C) :- C=0,bool(A),bool(B),bool(C).
+
+p3(A,B,C) :- B=1,bool(A),bool(B),bool(C).
+p3(A,B,C) :- C=1,bool(A),bool(B),bool(C).
+
+p4(A,B,C) :- A=0,bool(A),bool(B),bool(C).
+
+r(A,B,C) :- p1(A,B,C),p2(A,B,C),p3(A,B,C),p4(A,B,C).
+%-----------
+sat(A,B,C) :- r(A,B,C),bool(A),bool(B),bool(C).

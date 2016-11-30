@@ -1,0 +1,17 @@
+contenu(tigre).
+contenu(princesse).
+
+
+affiche_2(princesse,princesse).
+affiche_1(princesse,princesse).
+porte_1(X,Y):-contenu(Y),contenu(X),affiche_1(X,Y), X=princesse.
+porte_2(X,Y):-contenu(Y),contenu(X),affiche_2(X,Y), X=tigre.
+
+
+solutions(X,Y):- porte_1(X,Y), porte_2(X,Y).
+
+alt_solution_1(X,Y) :- contenu(X),contenu(Y),not(porte_1(X,Y)),not(porte_2(X,Y)).
+
+alt_solution_2(X,Y) :- contenu(X),contenu(Y),porte_1(X,Y),not(porte_2(X,Y)).
+
+alt_solution_3(X,Y) :- contenu(X),contenu(Y),not(porte_1(X,Y)),porte_2(X,Y).
