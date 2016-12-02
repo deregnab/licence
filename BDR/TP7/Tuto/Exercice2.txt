@@ -1,0 +1,7 @@
+schema([ssn,ename,bdate,address,dnumber, dname, dmgrssn]).
+fds1([ [[ssn],[ename, bdate, address, dnumber]],
+	[[dnumber],[dname,dmgrssn]]
+ ]).
+
+clotureSSN(Rep) :- schema(X1),fds1(F1),xplus(X1,F1,[ssn],Rep).
+clotureDNUMBER(Rep) :- schema(X1),fds1(F1),xplus(X1,F1,[dnumber],Rep).

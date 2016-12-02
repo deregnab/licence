@@ -1,0 +1,18 @@
+schema([courseno,secno,offeringdept,credithours,courselevel,
+instructorssn,semester,year, dayshours,roomno,
+noofstudents]).
+fds([
+[[courseno],
+[offeringdept,credithours,courselevel]],
+
+[[courseno,secno,semester,year],
+[dayshours,roomno, noofstudents, instructorssn]],
+
+[[roomno,dayshours,semester,year],
+[instructorssn,courseno,secno]]
+]).
+
+cand(K) :- schema(R), fds(F), candkey(R,F,K).
+tnf(K) :- schema(R), fds(F), threenf(R,F,K).
+bcnf(K) :- schema(R), fds(F), bcnf(R,F,K).
+

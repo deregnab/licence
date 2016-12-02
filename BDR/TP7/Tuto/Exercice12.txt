@@ -1,0 +1,16 @@
+schema([a,b,c,d,e]).
+fds([
+[[a,b],
+[c]],
+
+[[c,d],
+[e]],
+
+[[d,e],
+[b]]
+]).
+
+
+cand(K) :- schema(R), fds(F), candkey(R,F,K).
+tnf(K) :- schema(R), fds(F), threenf(R,F,K).
+bcnf(K) :- schema(R), fds(F), bcnf(R,F,K).

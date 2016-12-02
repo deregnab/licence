@@ -1,0 +1,20 @@
+schema([a,b,c,d,e,f,g,h,i,j]).
+fds([
+[[a,b],
+[c]],
+
+[[a],
+[d,e]],
+
+[[b],
+[f]],
+
+[[f],
+[g,h]],
+
+[[d],
+[i,j]]
+]).
+
+
+answer(K) :- schema(R), fds(F), bcnf(R,F,K).

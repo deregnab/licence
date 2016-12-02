@@ -1,0 +1,7 @@
+schema([a,b,c,d,e]).
+fds([
+[[a,b],[c]],[[c,d],[e]],[[d,e],[b]]
+]).
+
+goAB :- schema(R), fds(F), candkey(R,F,[a,b]).
+goABD :- schema(R), fds(F), candkey(R,F,[a,b,d]).

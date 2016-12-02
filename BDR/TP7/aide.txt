@@ -1,0 +1,7 @@
+swipl pour lancer le truc
+
+Exemple de syntaxe:
+
+?- ['dbd.pl'].
+?- ['example.txt'].
+?- halt.
